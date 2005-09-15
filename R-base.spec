@@ -8,12 +8,12 @@
 %define prefix /usr
 
 Name: R-base
-%define version 2.0.1
+%define version 2.1.1
 %define release 1 
 
 Version: %version
 Release: %release
-Source: ftp://cvs.r-project.org/pub/CRAN/src/base/R-%version.tar.gz
+Source: http://cran.r-project.org/src/base/R-2/R-2.1.1.tar.gz
 Copyright: GPL
 URL:  http://www.r-project.org/
 Group: Applications/Math
@@ -127,7 +127,7 @@ rm -rf $RPM_BUILD_ROOT
 %{prefix}/lib/R/AUTHORS
 %{prefix}/lib/R/THANKS
 %{prefix}/lib/R/RESOURCES
-%{prefix}/lib/R/afm/
+#%{prefix}/lib/R/afm/
 %{prefix}/lib/R/bin/
 %{prefix}/lib/R/share/
 %doc %{prefix}/lib/R/doc/

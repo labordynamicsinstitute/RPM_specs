@@ -4,7 +4,7 @@ Group: Application/Statistics
 Summary: Stata 9 from Stata.com 
 Packager: Lars Vilhuber <lars.vilhuber@cornell.edu>
 Version: 9.0 
-Release: 2
+Release: 1 
 Source0: stata9-ia64.installed.tgz 
 BuildRoot: %{_tmppath}/%{name}-%{version}-build 
 BuildArch: ia64 
@@ -29,8 +29,6 @@ You can update ado packages and binaries by running
 cd %buildroot
 mkdir -p -m 755 %buildroot/usr/local/bin
 tar xzvf %{SOURCE0}  
-chmod a+rwx %buildroot/usr/local/stata9/.license
-chmod a+rw %buildroot/usr/local/stata9/.license/stata.sim
 ln -s ../stata9/stata %buildroot/usr/local/bin/stata9
 ln -s ../stata9/stata-se %buildroot/usr/local/bin/stata9-se
 ln -s ../stata9/xstata %buildroot/usr/local/bin/xstata9
