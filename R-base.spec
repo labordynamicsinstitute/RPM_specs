@@ -9,7 +9,7 @@
 
 Name: R-base
 %define version 2.1.1
-%define release 1 
+%define release 2 
 
 Version: %version
 Release: %release
