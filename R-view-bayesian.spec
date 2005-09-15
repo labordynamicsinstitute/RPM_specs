@@ -19,7 +19,7 @@ URL: http://cran.r-project.org/src/contrib/Views/Bayesian.html
 Group: Applications/Math
 Summary: R view %{viewname} - Bayesian Inference
 BuildRequires: R-base
-PreReq: R-base R-view-core-bayeseconometrics
+PreReq: R-base R-view-core-bayesian-econ
 BuildRoot: /var/tmp/%{viewname}-buildroot
 
 %description
