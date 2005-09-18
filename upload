@@ -1,0 +1,4 @@
+#!/bin/bash
+[[ $(whoami) = lv39 ]]  && userid=vilhu001 || userid=$(whoami)
+
+scp $1 $userid@lservices.ciser.cornell.edu:/srv/yast/extras/SPECS
