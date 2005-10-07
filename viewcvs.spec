@@ -4,7 +4,7 @@
 
 Name:         viewcvs-alt
 Version:      1.0
-Release:      11
+Release:      25
 #
 %define	apache_sysconfdir	/etc/apache2
 #
@@ -29,9 +29,7 @@ Source1:      subversion.viewcvs.conf
 #
 # build fixes
 #
-Patch41:      subversion.viewcvs.forbidden-hide_cvsroot_CAN-2004-0915.patch
 Patch42:      subversion.viewcvs-buglink.patch
-Patch43:      subversion.viewcvs.escapeurl_CAN-2004-1062.patch
 #
 
 %description
@@ -73,9 +71,7 @@ See description of viewcvs-alt.
 %prep
 %setup -n viewcvs-cvs
 #
-%patch41
 %patch42
-%patch43
 
 #------------------------------ build section ------------------------------
 %build
@@ -95,7 +91,7 @@ do
 sed '
 s@^#docroot.*@docroot = /viewcvs-docroot@
 s@^default_root.*@default_root = your_unnamed_project@
-s@^cvsgraph_conf.*@cvsgraph_conf = %{viewcvs_dir}/cvsgraph.conf@
+s@^cvsgraph_conf.*@cvsgraph_conf = %{viewcvs_dir}/${i}cvsgraph.conf@
 s@^hr_funout.*@hr_funout = 1@
 s@^show_changed_paths.*@show_changed_paths = 0@
 /^cvs_roots/,/^$/s/^/###/
