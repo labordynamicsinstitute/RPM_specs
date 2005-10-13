@@ -1,5 +1,5 @@
 #
-# spec file for package FreeNX (Version 0.4.1)
+# spec file for package FreeNX (Version 0.4.4)
 #
 # Copyright (c) 2005 SUSE LINUX Products GmbH, Nuernberg, Germany.
 # This file and all modifications and additions to the pristine
@@ -11,14 +11,14 @@
 # norootforbuild
 # neededforbuild  
 
-BuildRequires: aaa_base acl attr bash bind-utils bison bzip2 coreutils cpio cpp cracklib cvs cyrus-sasl db devs diffutils e2fsprogs file filesystem fillup findutils flex gawk gdbm-devel glibc glibc-devel glibc-locale gpm grep groff gzip info insserv klogd less libacl libattr libgcc libnscd libselinux libstdc++ libxcrypt libzio m4 make man mktemp module-init-tools ncurses ncurses-devel net-tools netcfg openldap2-client openssl pam pam-modules patch permissions popt procinfo procps psmisc pwdutils rcs readline sed strace syslogd sysvinit tar tcpd texinfo timezone unzip util-linux vim zlib zlib-devel autoconf automake binutils gcc gdbm gettext libtool perl rpm
+BuildRequires: aaa_base acl attr bash bind-utils bison bzip2 coreutils cpio cpp cracklib cvs cyrus-sasl db devs diffutils e2fsprogs file filesystem fillup findutils flex gawk gdbm-devel glibc glibc-devel glibc-locale gpm grep groff gzip info insserv less libacl libattr libgcc  libselinux libstdc++ libxcrypt  m4 make man mktemp module-init-tools ncurses ncurses-devel net-tools netcfg openldap2-client openssl pam pam-modules patch permissions popt procinfo procps psmisc pwdutils rcs readline sed strace syslogd sysvinit tar tcpd texinfo timezone unzip util-linux vim zlib zlib-devel autoconf automake binutils gcc gdbm gettext libtool perl rpm
 
 Name:         FreeNX
 License:      GPL
 URL:          http://debian.tu-bs.de/knoppix/nx/
 Group:        System/X11/Servers/XF86_4
 Version:      0.4.4
-Release:      1.0
+Release:      3.1
 Requires:     NX openssh expect netcat
 Summary:      FreeNX Application and Thin Client Server
 Source:       freenx-%{version}.tar.gz
@@ -27,6 +27,11 @@ Source2:      ANNOUNCE-0.3.0
 Source3:      ANNOUNCE-0.3.1
 Source4:      ANNOUNCE-0.4.0
 Source5:      ANNOUNCE-0.4.1
+Source6:      ANNOUNCE-0.4.2
+Source7:      NX-Firewall.txt
+Patch:        freenx-enable_rootless_mode.diff
+Patch1:       freenx-enable_backend.diff
+Patch2:       freenx-%{version}.diff
 BuildRoot:    %{_tmppath}/%{name}-%{version}-build
 
 %description
@@ -45,6 +50,9 @@ Authors:
 %debug_package
 %prep
 %setup -n freenx-%{version}
+%patch -p1
+%patch1 -p0
+%patch2 -p0
 
 %build
 
@@ -53,11 +61,11 @@ mkdir -p $RPM_BUILD_ROOT/usr/bin
 install -m 755 nx* $RPM_BUILD_ROOT/usr/bin
 mkdir -p $RPM_BUILD_ROOT/etc/nxserver
 install -m 644 node.conf.sample $RPM_BUILD_ROOT/etc/nxserver/node.conf
-cp $RPM_SOURCE_DIR/README.SuSE $RPM_SOURCE_DIR/ANNOUNCE-* .
+cp $RPM_SOURCE_DIR/{README.SuSE,ANNOUNCE-*,NX-Firewall.txt} .
 
 %files
 %defattr(-,root,root)
-%doc README.SuSE AUTHORS CONTRIB COPYING ChangeLog INSTALL ANNOUNCE-*
+%doc README.SuSE AUTHORS CONTRIB COPYING ChangeLog INSTALL ANNOUNCE-* NX-Firewall.txt
 %dir /etc/nxserver
 %config /etc/nxserver/node.conf
 /usr/bin/nxclient
@@ -70,6 +78,49 @@ cp $RPM_SOURCE_DIR/README.SuSE $RPM_SOURCE_DIR/ANNOUNCE-* .
 /usr/bin/nxprint
 
 %changelog -n FreeNX
+* Mon Sep 05 2005 - sndirsch@suse.de
+- added firewall doc (wgottwalt)
+* Fri Aug 19 2005 - sndirsch@suse.de
+- freenx-0.4.4.diff:
+  * fixed nxsetup, when nx user does not exist yet
+* Wed Aug 10 2005 - sndirsch@suse.de
+- updated to FreeNX 0.4.4 "UKUUG Enterprise Edition"
+  * Added ENABLE_1_5_0_BACKEND configuration directive:
+  * Fixed fullscreen support in nxdesktop (still feels more
+  like 'Available Area', but with Ctrl-Alt-F you can get
+  "real" fullscreen)
+  * Added COMMAND_MD5SUM directive
+  * Security: $USER_FAKE_HOME/.nx now gets 0700
+  * Fixed support for CUPS forwarding.
+  * Added secure re-transmitting to client.
+  * Removed grep from getent to not search through the whole
+  database.
+  (Suggestion by "Matthew S. Harris" <mharris@google.com>,
+  "Ed Warnicke"       <eaw@cisco.com>)
+  * Set sleeps to 60 instead of 10 seconds, removed one wrong trap.
+  (Suggestion by "Sunil" <funtoos@yahoo.com>)
+  * Made automatic timeout configurable.
+  (Patch by "Ed Warnicke" <eaw@cisco.com>)
+  * Made nxsetup more enterprise friendly. Added --localuser
+  (RedHat only) and --gid.
+  (Based on a patch by "Ed Warnicke" <eaw@cisco.com>)
+  * Fixed resume of multiple sessions.
+* Sat Jul 30 2005 - sndirsch@suse.de
+- updated README.SuSE for FreeNX > 0.2.x
+* Fri Jul 29 2005 - sndirsch@suse.de
+- the option right below was commented out - fixed now
+* Thu Jul 28 2005 - sndirsch@suse.de
+- updated to FreeNX 0.4.3
+- freenx-enable_backend.diff:
+  * enables fake cookie authentication, when a 1.5.0 client connects
+* Tue Jul 26 2005 - sndirsch@suse.de
+- added announcement for 0.4.2 to docs
+* Mon Jul 25 2005 - sndirsch@suse.de
+- updated to FreeNX 0.4.2
+* Sat Jul 23 2005 - sndirsch@suse.de
+- freenx-enable_rootless_mode.diff:
+  * enabled rootless mode by default; supported since NX 1.5.0
+  Snapshot 2
 * Wed Jun 29 2005 - sndirsch@suse.de
 - 24.06.2005 FreeNX 0.4.1 "LinuxTag Edition"
   * Fixed a small security problem giving access to session

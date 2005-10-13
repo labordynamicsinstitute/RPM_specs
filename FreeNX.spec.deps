@@ -1,0 +1,11 @@
+bison
+flex
+gdbm-devel
+klogd
+libnscd
+libzio
+rcs
+texinfo
+autoconf
+automake
+gettext
