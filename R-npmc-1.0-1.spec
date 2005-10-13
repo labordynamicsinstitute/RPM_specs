@@ -19,7 +19,7 @@ Group: Applications/Math
 Summary: R package %{packname} - Nonparametric Multiple Comparisons
 BuildRequires: R-base
 PreReq: R-base
-Requires:  R-mvtnorm R-norm
+Requires:  R-norm R-mvtnorm
 BuildRoot: /var/tmp/%{packname}-buildroot
 
 %description

@@ -19,6 +19,7 @@ Group: Applications/Math
 Summary: R package %{packname} - Fixed point clusters, clusterwise regression and discriminant plots
 BuildRequires: R-base
 PreReq: R-base
+Requires: 
 BuildRoot: /var/tmp/%{packname}-buildroot
 
 %description

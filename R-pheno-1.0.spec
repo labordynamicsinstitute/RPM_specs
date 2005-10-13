@@ -19,7 +19,7 @@ Group: Applications/Math
 Summary: R package %{packname} - Auxiliary functions for phenological data analysis
 BuildRequires: R-base
 PreReq: R-base
-Requires:  R-quantreg R-SparseM R-nprq
+Requires:  R-quantreg R-nprq R-SparseM
 BuildRoot: /var/tmp/%{packname}-buildroot
 
 %description

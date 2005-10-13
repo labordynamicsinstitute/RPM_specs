@@ -19,6 +19,7 @@ Group: Applications/Math
 Summary: R package %{packname} - analysis of growth curve experiments
 BuildRequires: R-base
 PreReq: R-base
+Requires: 
 BuildRoot: /var/tmp/%{packname}-buildroot
 
 %description

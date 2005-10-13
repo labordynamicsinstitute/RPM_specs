@@ -19,6 +19,7 @@ Group: Applications/Math
 Summary: R package %{packname} - Multivariate nonparametric Cramer-Test for the two-sample-problem
 BuildRequires: R-base
 PreReq: R-base
+Requires: 
 BuildRoot: /var/tmp/%{packname}-buildroot
 
 %description

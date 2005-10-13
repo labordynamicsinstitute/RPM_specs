@@ -19,7 +19,7 @@ Group: Applications/Math
 Summary: R package %{packname} - Fault Tolerant Simple Network of Workstations
 BuildRequires: R-base
 PreReq: R-base
-Requires:  R-sn R-rpvm R-snow
+Requires:  R-rpvm R-sn R-snow
 BuildRoot: /var/tmp/%{packname}-buildroot
 
 %description
