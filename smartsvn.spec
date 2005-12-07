@@ -4,12 +4,14 @@ Group: Development/Tools/Version Control
 Summary: Multi-platform client for Subversionexternal link
 URL    : http://smartcvs.com/smartsvn/index.html
 Packager: Lars Vilhuber <lars.vilhuber@cornell.edu>
-Version: 1.0.1
+Version: 1.1.2
 Release: 1
-Source0: smartsvn-generic-1_0_1.tar.gz
+Source0: smartsvn-generic-1_1_2.tar.gz
 Source1: smartsvn-extra.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-build 
-BuildArch: i386 
+BuildArch: noarch
+Requires: java >= 1.4.2
+
 
 %description
 SmartSVN is an innovative multi-platform client for Subversionexternal link, the designated successor of CVS. SmartSVN has powerful features like built-in File Compare/Merge, Change Report or Tag and Branch handling, which make your daily work with Subversion as easy as possible.
@@ -19,7 +21,7 @@ SmartSVN is the consequent successor of SmartCVS, which helps thousands of users
 SmartSVN is available in two versions, a free Foundation version and the powerful Professional version.
 
 %prep
-%setup -n smartsvn-1_0_1
+%setup -n smartsvn-1_1_2
 
 %build
 # also extract the extras
