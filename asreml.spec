@@ -4,7 +4,7 @@ Group: Application/Statistics
 Summary: ASReml is a stastical program for mixed model analysis
 Packager: Lars Vilhuber <lars.vilhuber@cornell.edu>
 Version: 1.10
-Release: 0
+Release: 1
 Source0: ASREML110.ia64.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-build 
 BuildArch: ia64
@@ -33,11 +33,11 @@ AS Reml has already been successfully applied to:
 
 %install
 cd %buildroot
-install -d m 755 %buildroot/usr/local/bin
+install -d -m 755 -g root -o root %buildroot/usr/local/bin
 cd %buildroot/usr/local/bin
 tar xzf %{SOURCE0}
 chmod 0755  %buildroot/usr/local/bin/ASREML110
-ln -s ASREML110 asreml
+chmod 0755  %buildroot/usr/local/bin/asreml
 
 %clean
 
@@ -47,5 +47,7 @@ ln -s ASREML110 asreml
 
 
 %changelog
+* Wed Jan 4 2006 vilhuber@lservices
+- introduced script to set license path
 * Wed Mar 30 2005 vilhuber@lservices
 - Initial RPM
