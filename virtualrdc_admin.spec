@@ -1,7 +1,7 @@
 Summary: Tools to configure a VirtualRDC 
 Name: virtualrdc_admin 
-Version: 1.0.4
-Release: 3
+Version: 1.0.5
+Release: 0
 Copyright: GPL
 Group: System Environment/Base
 BuildRoot: %{_tmppath}/%{name}-%{version}-build 
@@ -15,35 +15,33 @@ Requires: perl, mysql-client
 * Provides tools to create groups
 
 %prep 
-set
-tar xvzf %{SOURCE0}
+%setup  
 
 %build
 
 %install
 
-export MYBUILD=$RPM_BUILD_DIR/${RPM_PACKAGE_NAME}/${RPM_PACKAGE_VERSION}/scripts
-rm -rf $RPM_BUILD_ROOT/
-install -d -m 755 $RPM_BUILD_ROOT/usr/local/sbin
-install -m 755    $MYBUILD/vrdc.addusers $RPM_BUILD_ROOT/usr/local/sbin/vrdc.addusers
-install -m 755    $MYBUILD/vrdc.resetpass $RPM_BUILD_ROOT/usr/local/sbin/vrdc.resetpass
-install -m 755    $MYBUILD/vrdc.creategroups $RPM_BUILD_ROOT/usr/local/sbin/vrdc.creategroups
-install -d -m 755 $RPM_BUILD_ROOT/usr/local/bin
-install -m 755    $MYBUILD/convert_phonetics.pl $RPM_BUILD_ROOT/usr/local/bin/convert_phonetics.pl
+install -d -m 755 %buildroot/usr/local/sbin
+install -d -m 755 %buildroot/usr/local/bin
+install -m 755 convert_phonetics.pl  %buildroot/usr/local/bin
+install -m 755 vrdc.*   %buildroot/usr/local/sbin
+
 
 %clean
-rm -rf $RPM_BUILD_ROOT/*
-
 
 %files
 %defattr(-,root,root) 
 /usr/local/bin/convert_phonetics.pl
+/usr/local/sbin/vrdc.setup
 /usr/local/sbin/vrdc.resetpass
 /usr/local/sbin/vrdc.addusers
 /usr/local/sbin/vrdc.creategroups
 
 
 %changelog
+* Mon Jan 10 2006 vilhuber
+  - Maintenance release
+  - added vrdc.setup
 * Mon Feb 21 2005 vilhuber
   - fixes email address domain
 * Sat Feb 19 2005 vilhuber
