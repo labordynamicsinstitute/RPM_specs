@@ -108,10 +108,10 @@ rm -rf %buildroot
 rm -fr /opt/%{name}
 
 %post
-%{update_menus}
+#%{update_menus}
 
 %postun
-%{clean_menus}
+#%{clean_menus}
 
 
 %changelog
