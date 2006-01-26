@@ -5,7 +5,7 @@ Summary: Multi-platform client for Subversionexternal link
 URL    : http://smartcvs.com/smartsvn/index.html
 Packager: Lars Vilhuber <lars.vilhuber@cornell.edu>
 Version: 1.1.2
-Release: 1
+Release: 2
 Source0: smartsvn-generic-1_1_2.tar.gz
 Source1: smartsvn-extra.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-build 
@@ -59,3 +59,7 @@ install -p -m 755 icon64.png %buildroot/opt/smartsvn/lib/icons/
 /opt/smartsvn
 /usr/bin/smartsvn
 /usr/share/applications/smartsvn.desktop
+
+%changelog
+* Thu Jan 26 2006 vilhuber@lservices
+- Fixed icon on desktop file
