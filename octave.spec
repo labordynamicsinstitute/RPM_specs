@@ -11,7 +11,7 @@
 # norootforbuild
 # neededforbuild  bison dejagnu expect flex g77 gmp gnuplot gperf gpp libgpp libpng readline-devel tcl termcap tetex
 
-BuildRequires: aaa_base acl attr bash bind-utils bison bzip2 coreutils cpio cpp cracklib cvs cyrus-sasl db devs diffutils e2fsprogs file filesystem fillup findutils flex gawk gdbm-devel gettext-devel glibc glibc-devel glibc-locale gpm grep groff gzip info insserv klogd less libacl libattr libcom_err libgcc libnscd libselinux libstdc++ libxcrypt libzio m4 make man mktemp module-init-tools ncurses ncurses-devel net-tools netcfg openldap2-client openssl pam pam-modules patch permissions popt procinfo procps psmisc pwdutils rcs readline sed strace sysvinit tar tcpd texinfo timezone unzip util-linux vim zlib zlib-devel autoconf automake binutils dejagnu expect gcc gcc-c++ gcc-fortran gdbm gettext gmp gnuplot gperf libpng libstdc++-devel libtool perl readline-devel rpm tcl te_ams te_latex termcap tetex
+BuildRequires: aaa_base acl attr bash bind-utils bison bzip2 coreutils cpio cpp cracklib cvs cyrus-sasl db devs diffutils e2fsprogs file filesystem fillup findutils flex gawk gdbm-devel gettext-devel glibc glibc-devel glibc-locale gpm grep groff gzip info insserv syslogd less libacl libattr  libgcc  libselinux libstdc++ libxcrypt  m4 make man mktemp module-init-tools ncurses ncurses-devel net-tools netcfg openldap2-client openssl pam pam-modules patch permissions popt procinfo procps psmisc pwdutils rcs readline sed strace sysvinit tar tcpd texinfo timezone unzip util-linux vim zlib zlib-devel autoconf automake binutils dejagnu expect gcc gcc-c++ f2c gdbm gettext gmp gnuplot gperf libpng libstdc++-devel libtool perl readline-devel rpm tcl te_ams te_latex termcap tetex
 
 Name:         octave
 URL:          http://www.octave.org/
@@ -22,7 +22,7 @@ Requires:     gnuplot
 PreReq:       %install_info_prereq
 Autoreqprov:  on
 Version:      2.1.71
-Release:      2
+Release:      2_sles9
 Summary:      A high level programming language
 Source:       %{name}-%{version}.tar.bz2
 Patch:        octave-2.1.71.patch
@@ -33,7 +33,7 @@ BuildRoot:    %{_tmppath}/%{name}-%{version}-build
 %description
 Octave is a high level programming language. It's designed for the
 solution of numeric problems. There is a command line interface
-supplied.
+supplied. This version does not have FFTW or MPI enabled.
 
 
 
