@@ -8,7 +8,7 @@ Group: Languages
 URL: http://www.cs.arizona.edu/icon/index.htm
 Source0: icon.v943src.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: xorg-x11-devel gcc
+BuildRequires: XFree86-devel gcc
 %description
 
 %prep
