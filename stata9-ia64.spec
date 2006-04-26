@@ -4,7 +4,7 @@ Group: Application/Statistics
 Summary: Stata 9 from Stata.com 
 Packager: Lars Vilhuber <lars.vilhuber@cornell.edu>
 Version: 9.0 
-Release: 1 
+Release: 3 
 Source0: stata9-ia64.installed.tgz 
 BuildRoot: %{_tmppath}/%{name}-%{version}-build 
 BuildArch: ia64 
@@ -64,6 +64,5 @@ fi
 /usr/local/stata9/stata_br
 /usr/local/stata9/xstata
 /usr/local/stata9/stata.msg
-/usr/local/stata9/.license/emptyfile
 /usr/local/stata9/.license/stata.sim
 /usr/local/stata9/update_stata_se
