@@ -3,12 +3,12 @@ Name: icon
 Version: 9.4.3
 Release: 1
 License: Public Domain
-Prefix: /opt
+Prefix: /usr/local
 Group: Languages
 URL: http://www.cs.arizona.edu/icon/index.htm
 Source0: icon.v943src.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
+BuildRequires: xorg-x11-devel gcc
 %description
 
 %prep
@@ -21,13 +21,20 @@ make
 make Test
 
 %install
-install -d -m 755 %buildroot/opt/icon
-install -D -m 755 bin %{buildroot}/opt/icon/bin  
-install -D -m 755 lib %{buildroot}/opt/icon/lib  
+install -d -m 755 %buildroot/usr/local/bin
+install -d -m 755 %buildroot/usr/local/icon/bin
+install -d -m 755 %buildroot/usr/local/icon/lib
+install    -m 755 bin/* %{buildroot}/usr/local/icon/bin  
+install    -m 755 lib/* %{buildroot}/usr/local/icon/lib  
 # man pages
-install -d -m 755 %buildroot/usr/share/man/man1
-install    -m 755 man/man1/icon*.1 %buildroot/usr/share/man/man1
-rm -rf $RPM_BUILD_ROOT
+install -d -m 755 %buildroot/usr/local/share/man/man1
+install    -m 755 man/man1/icon*.1 %buildroot/usr/local/share/man/man1
+# link in the binaries
+cd %{buildroot}/usr/local/bin/
+ln -s ../icon/bin/icon .
+ln -s ../icon/bin/icont .
+ln -s ../icon/bin/iconx .
+ln -s ../icon/bin/vib .
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -36,9 +43,16 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-,root,root,-)
 %doc doc/
-
+/usr/local/share/man/man1/icon.1
+/usr/local/share/man/man1/icont.1
+/usr/local/icon
+/usr/local/bin/icon
+/usr/local/bin/icont
+/usr/local/bin/iconx
+/usr/local/bin/vib
 
 %changelog
 * Tue Apr 25 2006 Lars Vilhuber <lars.vilhuber@cornell.edu> - 
 - Initial build.
+
 
