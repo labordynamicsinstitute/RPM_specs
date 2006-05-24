@@ -20,13 +20,18 @@ This is the Linux64 ASReml license for CISER (site license).
 %install
 cd %buildroot
 install -d -m 755 -g root -o root %buildroot/usr/local/etc/asreml
-export ASREML_LICENSE_FILE=%buildroot/usr/local/etc/asreml/ASReml.alx
-ASREML110 -n %{SOURCE0}
+install -m 755 -g root -o root %{SOURCE0} %buildroot/usr/local/etc/asreml/
+
+%post
+export ASREML_LICENSE_FILE=/usr/local/etc/asreml/ASReml.alx
+[[ -f $ASREML_LICENSE_FILE ]] && mv $ASREML_LICENSE_FILE
+cd /usr/local/etc/asreml
+/usr/local/bin/ASREML110 -n %{SOURCE0}
 
 %clean
 
 %files
-/usr/local/etc/asreml/ASReml.alx
+/usr/local/etc/asreml/vrdc6401.ali
 
 %changelog
 * Wed May 24 2006 lars.vilhuber@cornell.edu
