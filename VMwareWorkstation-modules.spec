@@ -1,11 +1,11 @@
-%define krelease 2.6.11.4-21.11-default
+%define krelease 2.6.11.4-21.12-default
 Name: VMwareWorkstation-Modules
 License: Commercial
 Group: System
 Summary: VMware modules
 Packager: Lars Vilhuber <lars.vilhuber@cornell.edu>
 Version: 5.5.1 
-Release: 2.6.11 
+Release: 2.6.11_21.12 
 BuildRoot: %{_tmppath}/%{name}-%{version}-build 
 
 %description
