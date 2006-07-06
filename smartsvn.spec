@@ -4,9 +4,9 @@ Group: Development/Tools/Version Control
 Summary: Multi-platform client for Subversionexternal link
 URL    : http://smartcvs.com/smartsvn/index.html
 Packager: Lars Vilhuber <lars.vilhuber@cornell.edu>
-Version: 1.1.8
+Version: 2.0.1
 # adjust to match the version above
-%define _version 1_1_8
+%define _version 2_0_1
 Release: 0
 Source0: smartsvn-generic-%{_version}.tar.gz
 Source1: smartsvn-extra.tgz
@@ -31,22 +31,22 @@ tar xzvf %{SOURCE1}
 
 %install
 # the actual application
-install -o root -d -m 755 %buildroot/opt/smartsvn/bin
-install -o root -d -m 755 %buildroot/opt/smartsvn/lib
-install -o root -p -m 755 -D bin/* %buildroot/opt/smartsvn/bin
-install -o root -p -m 755 -D lib/* %buildroot/opt/smartsvn/lib
+install  -d -m 755 %buildroot/opt/smartsvn/bin
+install  -d -m 755 %buildroot/opt/smartsvn/lib
+install  -p -m 755 -D bin/* %buildroot/opt/smartsvn/bin
+install  -p -m 755 -D lib/* %buildroot/opt/smartsvn/lib
 # the link
-install -o root -d -m 755 %buildroot/usr/bin
+install  -d -m 755 %buildroot/usr/bin
 ln -s ../../opt/smartsvn/bin/smartsvn.sh %buildroot/usr/bin/smartsvn
 # get the menu entry right
-install -o root -d -m 755 %buildroot/usr/share/applications
-install -o root -p -m 755 smartsvn.desktop %buildroot/usr/share/applications/smartsvn.desktop
+install  -d -m 755 %buildroot/usr/share/applications
+install  -p -m 755 smartsvn.desktop %buildroot/usr/share/applications/smartsvn.desktop
 # now for the icons
-install -o root -d -m 755 %buildroot/opt/smartsvn/lib/icons
-install -o root -p -m 755 icon16.png %buildroot/opt/smartsvn/lib/icons/
-install -o root -p -m 755 icon32.png %buildroot/opt/smartsvn/lib/icons/
-install -o root -p -m 755 icon48.png %buildroot/opt/smartsvn/lib/icons/
-install -o root -p -m 755 icon64.png %buildroot/opt/smartsvn/lib/icons/
+install  -d -m 755 %buildroot/opt/smartsvn/lib/icons
+install  -p -m 755 icon16.png %buildroot/opt/smartsvn/lib/icons/
+install  -p -m 755 icon32.png %buildroot/opt/smartsvn/lib/icons/
+install  -p -m 755 icon48.png %buildroot/opt/smartsvn/lib/icons/
+install  -p -m 755 icon64.png %buildroot/opt/smartsvn/lib/icons/
 
 #------------------------------------------------
 # after uninstalling, clean up any leftover files
@@ -58,11 +58,14 @@ install -o root -p -m 755 icon64.png %buildroot/opt/smartsvn/lib/icons/
 
 %files
 %doc changelog.txt license.html smartsvn.pdf smartsvn.url
-/opt/smartsvn
-/usr/bin/smartsvn
-/usr/share/applications/smartsvn.desktop
+%attr(755,root,-) /opt/smartsvn
+%attr(755,root,-) /usr/bin/smartsvn
+%attr(755,root,-) /usr/share/applications/smartsvn.desktop
 
 %changelog
+* Thu Jul  6 2006 Lars Vilhuber <lars.vilhuber@cornell.edu> - 2.0.1-0
+- Updated to 2.0.1
+
 * Thu Jan 26 2006 vilhuber@lservices
 - Updated to 1.1.5
 - Fixed icon on desktop file
