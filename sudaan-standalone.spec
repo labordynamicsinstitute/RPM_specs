@@ -44,7 +44,6 @@ These are the help files.
 %prep
 
 %build
-cd %buildroot
 
 echo "
 1. Enter the directory where the SUDAAN program files are
@@ -75,7 +74,7 @@ export SUDWORK" > sudaan-sas9.sh
 
 
 %install
-cd %buildroot
+
 install -d -m 755 %buildroot/%{install_root}
 install -d -m 755 %buildroot/etc/profile.d
 install -m 755 sudaan.sh %buildroot/etc/profile.d/sudaan.sh
@@ -101,7 +100,7 @@ do
 	esac
 done
 cd %buildroot
-rm README.Sudaan sudaan*sh
+#rm README.Sudaan sudaan*sh
 
 #------------------------------------------------
 # after uninstalling, clean up any leftover files
