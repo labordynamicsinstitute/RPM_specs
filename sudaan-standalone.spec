@@ -87,16 +87,16 @@ do
 	cd %buildroot/%{install_root}/$arg
 	case $arg in
 		Standalone)
-		   tar xvf %{SOURCE0}  
+		   tar xf %{SOURCE0}  
 		;;
 		SAS9)
-		   tar xvf %{SOURCE1}  
+		   tar xf %{SOURCE1}  
 		;;
 		Manual)
-		   tar xvf %{SOURCE2}  
+		   tar xf %{SOURCE2}  
 		;;
 		Help)
-		   tar xvf %{SOURCE3}  
+		   tar xf %{SOURCE3}  
 		;;
 	esac
 done
