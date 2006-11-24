@@ -9,7 +9,7 @@ Source0: %{name}-%{version}.tgz
 Source1: %{name}-extras.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
-Requires: jreceiver-jetty >= 4.2 java mysql-client
+Requires: JReceiver-Jetty >= 4.2 java mysql-client
 #Requires: java >1.3  
 #Requires: mysql-client
 
