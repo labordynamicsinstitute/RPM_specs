@@ -8,12 +8,12 @@
 %define prefix /usr
 
 Name: R-base
-%define version 2.3.0
+%define version 2.4.0
 %define release 1 
 
 Version: %version
 Release: %release
-Source: ftp://cvs.r-project.org/pub/CRAN/src/base/R-2/R-%version.tar.gz
+Source: http://cran.r-project.org/src/base/R-2/R-%version.tar.gz
 License: GPL
 URL:  http://www.r-project.org/
 Group: Productivity/Science/Math
