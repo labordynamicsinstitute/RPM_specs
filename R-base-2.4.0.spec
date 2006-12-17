@@ -20,11 +20,11 @@ Group: Productivity/Science/Math
 PreReq: perl
 Summary: R - statistics package (S-Plus like)
 BuildRoot: /var/tmp/%{name}-root
-BuildRequires: gcc, gcc-c++, gcc-fortran, blas, perl
+BuildRequires: gcc, gcc-c++, gcc-g77, blas, perl
 BuildRequires: libpng-devel, libjpeg-devel, readline-devel,
-BuildRequires: tetex, te_latex, texinfo, tcl-devel, tk-devel, xorg-x11-devel
-Requires: libpng, libjpeg, readline, xorg-x11-fonts-100dpi
-Requires: xorg-x11-fonts-75dpi, xorg-x11-libs, blas
+BuildRequires: tetex, te_latex, texinfo, tcl-devel, tk-devel, XFree86-devel
+Requires: libpng, libjpeg, readline, XFree86-fonts-100dpi
+Requires: XFree86-fonts-75dpi, XFree86-libs, blas
 AutoReqProv: Yes
 
 %description
@@ -49,12 +49,16 @@ CXXFAGS="" CFLAGS="" FFLAGS="" ./configure  --enable-R-shlib --prefix=%{prefix}
 CXXFAGS="" CFLAGS="" FFLAGS="" ./configure  --enable-R-shlib --prefix=%{prefix}
 %define ILD lib64
 %endif
+%ifarch ia64
+CXXFAGS="" CFLAGS="" FFLAGS="" ./configure --with-gnome=/opt/gnome --with-libglade-config=/opt/gnome/bin/libglade-config --enable-R-shlib --prefix=%{prefix}
+%define ILD lib
+%endif
 %endif
 
 TEXINPUTS="" BIBINPUTS="" make 
 TEXINPUTS="" BIBINPUTS="" make dvi
 TEXINPUTS="" BIBINPUTS="" make pdf
-TEXINPUTS="" BIBINPUTS="" make info
+#TEXINPUTS="" BIBINPUTS="" make info
 TEXINPUTS="" BIBINPUTS="" make check
 
 %install -n R-%{version}
@@ -67,7 +71,7 @@ mkdir -p $RPM_BUILD_ROOT%prefix/share/info
 mkdir -p $RPM_BUILD_ROOT%prefix/share/man/man1
 
 # install info files:
-cp doc/manual/*.info* $RPM_BUILD_ROOT%prefix/share/info
+# cp doc/manual/*.info* $RPM_BUILD_ROOT%prefix/share/info
 # Info files are installes with make install by default now.
 
 # install pdf files:
@@ -110,7 +114,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-, root, root)
 %doc README
 %doc %{prefix}/share/man/man1/R.1*
-%doc %{prefix}/share/info/*info*
+#%doc %{prefix}/share/info/*info*
 %{prefix}/bin/R
 #%{prefix}/%{ILD}/R/COPYING
 #%{prefix}/%{ILD}/R/COPYING.LIB
