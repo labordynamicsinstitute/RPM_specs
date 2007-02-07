@@ -4,7 +4,7 @@ Group: Productivity/Publishing
 Summary: JabRef is an open source bibliography reference manager. 
 URL: http://jabref.sourceforge.net/
 Packager: Lars Vilhuber <lars.vilhuber@cornell.edu>
-Version: 2.1
+Version: 2.2
 Release: 0
 Source0: http://superb.dl.sourceforge.net/sourceforge/jabref/JabRef-%{version}.jar
 Source1: jabref-extra.tgz
