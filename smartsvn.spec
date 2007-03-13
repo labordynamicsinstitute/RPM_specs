@@ -4,9 +4,9 @@ Group: Development/Tools/Version Control
 Summary: Multi-platform client for Subversionexternal link
 URL    : http://smartcvs.com/smartsvn/index.html
 Packager: Lars Vilhuber <lars.vilhuber@cornell.edu>
-Version: 2.1.3
+Version: 2.1.5
 # adjust to match the version above
-%define _version 2_1_3
+%define _version 2_1_5
 Release: 0
 Source0: smartsvn-generic-%{_version}.tar.gz
 Source1: smartsvn-extra.tgz
@@ -58,9 +58,9 @@ install  -p -m 755 icon64.png %buildroot/opt/smartsvn/lib/icons/
 
 %files
 %doc changelog.txt license.html smartsvn.pdf smartsvn.url
-%attr(755,root,-) /opt/smartsvn
-%attr(755,root,-) /usr/bin/smartsvn
-%attr(755,root,-) /usr/share/applications/smartsvn.desktop
+%attr(755,root,root) /opt/smartsvn
+%attr(755,root,root) /usr/bin/smartsvn
+%attr(755,root,root) /usr/share/applications/smartsvn.desktop
 
 %changelog
 * Thu Jul  6 2006 Lars Vilhuber <lars.vilhuber@cornell.edu> - 2.0.1-0
