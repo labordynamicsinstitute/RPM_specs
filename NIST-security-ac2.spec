@@ -1,7 +1,7 @@
 Summary:  Implements AC-02 (NIST 800-53)
 Name: NIST-security-ac2
 Version: 1.0
-Release: 0
+Release: 1
 License: GPL
 Vendor: Mohammed Chaudhry
 Packager: Lars Vilhuber <lars.vilhuber@cornell.edu>
@@ -27,15 +27,25 @@ because unreliable in the presence of NX logins.
 %setup -n dormant
 
 %build
+echo "messagebus
+haldaemon
+postgres
+squid
+zope
+named
+daemon
+wwwrun
+mysql
+" >> exclude
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d -m 755  %buildroot/var/log/
-install -d -m 700  %buildroot/var/log/dormant
+install -d -m 701  %buildroot/var/log/dormant
 install -d -m 755  %buildroot/etc/cron.daily
 install -d -m 755  %buildroot/etc/profile.d
 install dormant.pl %buildroot/var/log/dormant/
-touch  %buildroot/var/log/dormant/exclude
+install exclude  %buildroot/var/log/dormant/exclude
 touch  %buildroot/var/log/dormant/userList
 touch  %buildroot/var/log/dormant/userlogins
 install lock_dormant_accounts %buildroot/etc/cron.daily/
@@ -55,6 +65,10 @@ install dormant_accounts.sh %buildroot/etc/profile.d/
 %config /var/log/dormant/exclude
 
 %changelog
+* Wed May 16 2007 Lars Vilhuber <lars.vilhuber@cornell.edu> - 1.0-1
+- Changed permissions of /var/log/dormant directory
+- Added a couple of users to the exclude file
+
 * Tue May  1 2007 Lars Vilhuber <lars.vilhuber@cornell.edu> - 1.0-0
 - Initial build.
 
