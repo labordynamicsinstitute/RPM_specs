@@ -19,7 +19,7 @@ Group: Applications/Math
 Summary: R package %{packname} - Multivariate outlier detection based on robust methods
 BuildRequires: R-base
 PreReq: R-base
-Requires:  R-rrcov
+Requires:  R-st R-rrcov
 BuildRoot: /var/tmp/%{packname}-buildroot
 
 %description
@@ -54,11 +54,11 @@ test -d %{packname}/src && (cd %{packname}/src; rm -f *.o *.so)
 rm -rf $RPM_BUILD_ROOT
 
 %post
-%{prefix}/bin/R CMD perl %{prefix}/lib/R/share/perl/build-help.pl --htmllists
+%{prefix}/bin/R CMD perl %{prefix}/lib/R/share/perl/build-help.pl --html
 cat %{prefix}/lib/R/library/*/CONTENTS > %{prefix}/lib/R/doc/html/search/index.txt
 
 %postun
-%{prefix}/bin/R CMD perl %{prefix}/lib/R/share/perl/build-help.pl --htmllists
+%{prefix}/bin/R CMD perl %{prefix}/lib/R/share/perl/build-help.pl --html
 cat %{prefix}/lib/R/library/*/CONTENTS > %{prefix}/lib/R/doc/html/search/index.txt
 
 %files
