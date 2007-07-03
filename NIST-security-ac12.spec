@@ -4,7 +4,7 @@ Group: System/Security
 Summary: Implements AC-12 (NIST 800-53)
 Packager: Lars Vilhuber <lars.vilhuber@cornell.edu>
 Version: 1.0
-Release: 1
+Release: 2
 BuildRoot: %{_tmppath}/%{name}-%{version}-build 
 BuildArch: noarch
 %define filename    %{name}.sh
@@ -20,7 +20,7 @@ It only logs out sessions at the console.
 %build
 cd %{buildroot}
 echo '
-if [[ ! -z $(tty 2>/dev/null | grep -E "/dev/tty?") ]]
+if [[ ! -z $(tty 2>/dev/null | grep -E "/dev/tty?|/dev/rcons?|/dev/console") ]]
 then
  export TMOUT=1200        
 fi
@@ -38,6 +38,9 @@ rm %{filename}
 /etc/profile.d/%{filename}
 
 %changelog
+* Tue Jul  3 2007 Lars Vilhuber <lars.vilhuber@cornell.edu> - 1.0-2
+- Added console identification for Egenera blades
+
 * Wed May  2 2007 Lars Vilhuber <lars.vilhuber@cornell.edu> - 1.0-1
 - Made it slighty more general so it works on RH
 
