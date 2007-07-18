@@ -1,13 +1,14 @@
+BuildRequires: gcc-fortran
 Name: aml
 License: Commercial
 Group: Application/Statistics
 Summary: aML is a statistical software package for estimating multilevel, multiprocess models.
 Packager: Lars Vilhuber <lars.vilhuber@cornell.edu>
 Version: 2.09
-Release: 2
-Source0: aml-%{version}-lv.tgz
+Release: 3
+Source0: aml-%{version}-lv-3.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-build 
-BuildArch: ia64 i386
+BuildArch: ia64 i386 x86_64
 URL: http://www.applied-ml.com
 
 %description
@@ -53,6 +54,9 @@ install -m 0755 -o root -g users Peripherals/update %buildroot/usr/local/bin/upd
 
 
 %changelog
+* Tue Jul 17 2007 Lars Vilhuber <lars.vilhuber@cornell.edu> - 2.09-2
+- Modified to use gfortran instead of f77
+
 * Mon Jan 30 2006 vilhuber@lservices
 - First open-source version
 * Fri Jan 13 2006 vilhuber@lservices
