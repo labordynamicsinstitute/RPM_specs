@@ -4,7 +4,7 @@
 # D. Steuer <detlef.steuer@gmx.de>
 #
 %define ver      1.0
-%define packrel  19
+%define packrel  25
 %define rel      1
 %define packname tree
 %define prefix   /usr
@@ -51,11 +51,11 @@ test -d %{packname}/src && (cd %{packname}/src; rm -f *.o *.so)
 rm -rf $RPM_BUILD_ROOT
 
 %post
-%{prefix}/bin/R CMD perl %{prefix}/lib/R/share/perl/build-help.pl --htmllists
+%{prefix}/bin/R CMD perl %{prefix}/lib/R/share/perl/build-help.pl --index
 cat %{prefix}/lib/R/library/*/CONTENTS > %{prefix}/lib/R/doc/html/search/index.txt
 
 %postun
-%{prefix}/bin/R CMD perl %{prefix}/lib/R/share/perl/build-help.pl --htmllists
+%{prefix}/bin/R CMD perl %{prefix}/lib/R/share/perl/build-help.pl --index
 cat %{prefix}/lib/R/library/*/CONTENTS > %{prefix}/lib/R/doc/html/search/index.txt
 
 %files
