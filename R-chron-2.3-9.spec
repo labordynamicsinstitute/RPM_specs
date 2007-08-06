@@ -3,8 +3,8 @@
 #
 # D. Steuer <detlef.steuer@gmx.de>
 #
-%define ver      2.2
-%define packrel  35
+%define ver      2.3
+%define packrel  9
 %define rel      1
 %define packname chron
 %define prefix   /usr
@@ -29,7 +29,7 @@ Author(s)
 S original by David James <dj@research.bell-labs.com>,
 R port by Kurt Hornik <Kurt.Hornik@R-project.org>.
 
-2005-04-28
+2006-10-16
 
 %define _unpackaged_files_terminate_build 0
 %define _missing_doc_files_terminate_build 0
@@ -52,11 +52,11 @@ test -d %{packname}/src && (cd %{packname}/src; rm -f *.o *.so)
 rm -rf $RPM_BUILD_ROOT
 
 %post
-%{prefix}/bin/R CMD perl %{prefix}/lib/R/share/perl/build-help.pl --htmllists
+%{prefix}/bin/R CMD perl %{prefix}/lib/R/share/perl/build-help.pl --html
 cat %{prefix}/lib/R/library/*/CONTENTS > %{prefix}/lib/R/doc/html/search/index.txt
 
 %postun
-%{prefix}/bin/R CMD perl %{prefix}/lib/R/share/perl/build-help.pl --htmllists
+%{prefix}/bin/R CMD perl %{prefix}/lib/R/share/perl/build-help.pl --html
 cat %{prefix}/lib/R/library/*/CONTENTS > %{prefix}/lib/R/doc/html/search/index.txt
 
 %files
