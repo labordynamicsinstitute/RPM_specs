@@ -19,7 +19,7 @@ Group: Applications/Math
 Summary: R package %{packname} - Feature significance for multivariate kernel density estimation
 BuildRequires: R-base
 PreReq: R-base
-Requires:  R-misc3d R-rgl
+Requires:  R-misc3d R-rgl R-KernSmooth
 BuildRoot: /var/tmp/%{packname}-buildroot
 
 %description

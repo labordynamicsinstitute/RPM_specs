@@ -3,8 +3,8 @@
 #
 # D. Steuer <detlef.steuer@gmx.de>
 #
-%define ver      2.0
-%define packrel  14
+%define ver      2.1
+%define packrel  0
 %define rel      1
 %define packname sm
 %define prefix   /usr
@@ -54,7 +54,7 @@ test -d %{packname}/src && (cd %{packname}/src; rm -f *.o *.so)
 rm -rf $RPM_BUILD_ROOT
 
 %post
-%{prefix}/bin/R CMD perl %{prefix}/lib/R/share/perl/build-help.pl --htmllists
+%{prefix}/bin/R CMD perl %{prefix}/lib/R/share/perl/build-help.pl --html
 cat %{prefix}/lib/R/library/*/CONTENTS > %{prefix}/lib/R/doc/html/search/index.txt
 
 %postun

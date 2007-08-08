@@ -3,7 +3,7 @@
 #
 # D. Steuer <detlef.steuer@gmx.de>
 #
-%define ver      1.4.4
+%define ver      1.4.5
 %define packrel  0
 %define rel      1
 %define packname corpcor
