@@ -1,6 +1,6 @@
 %define name DenyHosts
 %define version 2.6
-%define release 2SUSE
+%define release 2SUSE_python25
 
 Summary: DenyHosts is a utility to help sys admins thwart ssh hackers
 Name: %{name}
@@ -11,7 +11,6 @@ License: GPL v2
 Group: Development/Libraries
 BuildRoot: %{_tmppath}/%{name}-buildroot
 Prefix: %{_prefix}
-BuildArchitectures: noarch
 Vendor: Phil Schwartz <phil_schwartz@users.sourceforge.net>
 Url: http://denyhosts.sourceforge.net
 Patch0: DenyHosts-2.6-SUSE.patch
