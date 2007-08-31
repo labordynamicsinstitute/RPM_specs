@@ -6,7 +6,7 @@ Packager: Lars Vilhuber <lars.vilhuber@cornell.edu>
 Version: 10.0
 Release: 0 
 Requires: stata10 >= 10.0
-Source0: stata10-ciser-x86.lic 
+Source0: stata10-x86-ciser.lic 
 BuildRoot: %{_tmppath}/%{name}-%{version}-build 
 BuildArch: i386 
 
@@ -19,14 +19,14 @@ This is CISER's Linux stata license. You will need to install it before initiali
 
 %install
 cd %buildroot
-install -d m 755 %buildroot/usr/local/stata9
-install -m 755 %{SOURCE0} %buildroot/usr/local/stata9/stata.lic
+install -d m 755 %buildroot/usr/local/stata10
+install -m 755 %{SOURCE0} %buildroot/usr/local/stata10/stata.lic
 
 %clean
 
 %files
-%defattr(-,root,root,0755)
-/usr/local/stata9/stata.lic
+%defattr(755,root,root,0755)
+/usr/local/stata10/stata.lic
 
 %changelog
 * Thu Aug 30 2007 Lars Vilhuber <lars.vilhuber@cornell.edu> - 10.0-1
