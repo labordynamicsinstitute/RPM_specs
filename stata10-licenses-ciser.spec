@@ -1,11 +1,11 @@
 Name: stata10-license-ciser
 License: Commercial
 Group: Application/Statistics
-Summary: Stata 10 license (single user, x86) from Stata.com for CISER 
+Summary: Stata 10 license (single user, x86, MP) from Stata.com for CISER 
 Packager: Lars Vilhuber <lars.vilhuber@cornell.edu>
 Version: 10.0
 Release: 0 
-Requires: stata10 >= 10.0
+Requires: stata10 >= 10.0 stata10-se stata10-std stata10-mp
 Source0: stata10-x86-ciser.lic 
 BuildRoot: %{_tmppath}/%{name}-%{version}-build 
 BuildArch: i386 
