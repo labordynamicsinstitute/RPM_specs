@@ -36,7 +36,13 @@ BuildRequires: tetex, te_latex
 %if %suse_version > 1020
 BuildRequires: texlive-bin-latex, texlive-bin, texlive-bin-xetex
 %endif
-BuildRequires: texinfo, tcl-devel, tk-devel, xorg-x11-devel
+%if %suse_version < 930
+BuildRequires: XFree86-devel
+%endif
+%if %suse_version >= 930
+BuildRequires: xorg-x11-devel
+%endif
+BuildRequires: texinfo, tcl-devel, tk-devel
 Requires: libpng, libjpeg, readline, xorg-x11-fonts-100dpi
 Requires: xorg-x11-fonts-75dpi, xorg-x11-libs, blas
 AutoReqProv: Yes
@@ -62,6 +68,10 @@ CXXFAGS="" CFLAGS="" FFLAGS="" ./configure  --enable-R-shlib --prefix=%{prefix}
 %ifarch x86_64
 CXXFAGS="" CFLAGS="" FFLAGS="" ./configure  --enable-R-shlib --prefix=%{prefix}
 %define ILD lib64
+%endif
+%ifarch ia64
+CXXFAGS="" CFLAGS="" FFLAGS="" ./configure  --enable-R-shlib --prefix=%{prefix}
+%define ILD lib
 %endif
 %endif
 
