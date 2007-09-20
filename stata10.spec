@@ -5,9 +5,8 @@ Summary: Stata 10 (standard) from Stata.com
 Packager: Lars Vilhuber <lars.vilhuber@cornell.edu>
 Version: 10.0 
 Release: 1 
-Source0: stata10-x86.tgz 
 BuildRoot: %{_tmppath}/%{name}-%{version}-build 
-BuildArch: i386 
+Source0: stata10-ia64.tgz 
 
 %description
 Installs Stata 10 base files. You will need one of -std, -se, and/or -mp,
