@@ -10,7 +10,7 @@
 
 Name: R-base
 %define version 2.5.1
-%define release 0 
+%define release 1 
 
 Version: %version
 Release: 2.1
@@ -62,15 +62,15 @@ by using the S manual.
 %build -n R-%{version}
 %ifos Linux
 %ifarch i586
-CXXFAGS="" CFLAGS="" FFLAGS="" ./configure  --enable-R-shlib --prefix=%{prefix}
+CXXFAGS="-g -O2" CFLAGS="-g -O2" FFLAGS="-g -O2" ./configure  --enable-R-shlib --prefix=%{prefix}
 %define ILD lib
 %endif
 %ifarch x86_64
-CXXFAGS="" CFLAGS="" FFLAGS="" ./configure  --enable-R-shlib --prefix=%{prefix}
+CXXFAGS="-g -O2" CFLAGS="-g -O2" FFLAGS="-g -O2" ./configure  --enable-R-shlib --prefix=%{prefix}
 %define ILD lib64
 %endif
 %ifarch ia64
-CXXFAGS="" CFLAGS="" FFLAGS="" ./configure  --enable-R-shlib --prefix=%{prefix}
+CXXFAGS="-g -O2" CFLAGS="-g -O2" FFLAGS="-g -O2" ./configure  --enable-R-shlib --prefix=%{prefix}
 %define ILD lib
 %endif
 %endif
