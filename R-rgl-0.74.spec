@@ -3,9 +3,9 @@
 #
 # D. Steuer <detlef.steuer@gmx.de>
 #
-%define ver      0.73
-%define packrel  3
-%define rel      1
+%define ver      0.74
+%define packrel  0
+%define rel      0
 %define packname rgl
 %define prefix   /usr
 

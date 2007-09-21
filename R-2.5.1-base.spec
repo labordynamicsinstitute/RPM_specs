@@ -13,7 +13,7 @@ Name: R-base
 %define release 1 
 
 Version: %version
-Release: 2.1
+Release: %release
 Source: http://cran.r-project.org/src/base/R-2/R-%version.tar.gz
 License: GPL
 URL:  http://www.r-project.org/
@@ -38,13 +38,15 @@ BuildRequires: texlive-bin-latex, texlive-bin, texlive-bin-xetex
 %endif
 %if %suse_version < 930
 BuildRequires: XFree86-devel
+Requires: XFree86-fonts-75dpi, XFree86-libs, XFree86-fonts-100dpi
 %endif
 %if %suse_version >= 930
 BuildRequires: xorg-x11-devel
+Requires: xorg-x11-fonts-75dpi, xorg-x11-libs,  xorg-x11-fonts-100dpi
 %endif
 BuildRequires: texinfo, tcl-devel, tk-devel
-Requires: libpng, libjpeg, readline, xorg-x11-fonts-100dpi
-Requires: xorg-x11-fonts-75dpi, xorg-x11-libs, blas
+Requires: libpng, libjpeg, readline
+Requires: blas
 AutoReqProv: Yes
 
 %description
@@ -62,15 +64,15 @@ by using the S manual.
 %build -n R-%{version}
 %ifos Linux
 %ifarch i586
-CXXFAGS="-g -O2" CFLAGS="-g -O2" FFLAGS="-g -O2" ./configure  --enable-R-shlib --prefix=%{prefix}
+CXXFLAGS="-g -O2" CFLAGS="-g -O2" FFLAGS="-g -O2" ./configure  --enable-R-shlib --prefix=%{prefix}
 %define ILD lib
 %endif
 %ifarch x86_64
-CXXFAGS="-g -O2" CFLAGS="-g -O2" FFLAGS="-g -O2" ./configure  --enable-R-shlib --prefix=%{prefix}
+CXXFLAGS="-g -O2" CFLAGS="-g -O2" FFLAGS="-g -O2" ./configure  --enable-R-shlib --prefix=%{prefix}
 %define ILD lib64
 %endif
 %ifarch ia64
-CXXFAGS="-g -O2" CFLAGS="-g -O2" FFLAGS="-g -O2" ./configure  --enable-R-shlib --prefix=%{prefix}
+R_PAPERSIZE=letter CXXFLAGS="-g -O2" CFLAGS="-g -O2" FFLAGS="-g -O2" ./configure  --enable-R-shlib --prefix=%{prefix}
 %define ILD lib
 %endif
 %endif
