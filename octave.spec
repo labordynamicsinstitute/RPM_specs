@@ -1,39 +1,58 @@
 #
-# spec file for package octave (Version 2.1.71)
+# spec file for package octave (Version 2.9.12)
 #
-# Copyright (c) 2005 SUSE LINUX Products GmbH, Nuernberg, Germany.
+# Copyright (c) 2007 SUSE LINUX Products GmbH, Nuernberg, Germany.
 # This file and all modifications and additions to the pristine
 # package are under the same license as the package itself.
 #
-# Please submit bugfixes or comments via http://www.suse.de/feedback/
+# Please submit bugfixes or comments via http://bugs.opensuse.org/
 #
 
 # norootforbuild
-# neededforbuild  bison dejagnu expect flex g77 gmp gnuplot gperf gpp libgpp libpng readline-devel tcl termcap tetex
+# usedforbuild    Mesa SDL aaa_base aalib acl atk attr audiofile audit-libs autoconf automake bash binutils bzip2 cairo coreutils cpio cpp cpp42 cracklib cups-libs cvs dejagnu diffutils esound expect file filesystem fillup findutils fontconfig freetype2 gawk gcc gcc-c++ gcc-fortran gcc42 gcc42-c++ gcc42-fortran gd gdbm gettext gettext-devel ghostscript-fonts-std ghostscript-library ghostscript-x11 glib2 glibc glibc-devel glibc-locale glitz gmp gmp-devel gnuplot gperf gpm grep groff gtk2 gzip hicolor-icon-theme info insserv less libacl libasound2 libattr libbz2-1 libbz2-devel libdb-4_5 libdrm libexpat1 libgcc42 libgfortran42 libgimpprint libgomp42 libjpeg libltdl-3 libmspack libmudflap42 libopenssl0_9_8 libpng libreadline5 libstdc++42 libstdc++42-devel libtiff3 libtool libuuid1 libvolume_id libxcrypt libxml2 libzio linux-kernel-headers m4 make man mktemp mpfr ncurses ncurses-devel net-tools netcfg openssl-certs pam pam-modules pango patch perl perl-Tk perl-base permissions plotutils poppler popt readline-devel rpm sed sysvinit t1lib tar tcl tcpd termcap texinfo texlive texlive-bin texlive-bin-latex texlive-latex timezone util-linux wxGTK xaw3d xorg-x11-libICE xorg-x11-libSM xorg-x11-libX11 xorg-x11-libXau xorg-x11-libXext xorg-x11-libXfixes xorg-x11-libXmu xorg-x11-libXp xorg-x11-libXpm xorg-x11-libXprintUtil xorg-x11-libXrender xorg-x11-libXt xorg-x11-libXv xorg-x11-libfontenc xorg-x11-libs xorg-x11-libxcb xorg-x11-libxkbfile zlib
 
-BuildRequires: aaa_base acl attr bash bind-utils bison bzip2 coreutils cpio cpp cracklib cvs cyrus-sasl db devs diffutils e2fsprogs file filesystem fillup findutils flex gawk gdbm-devel gettext-devel glibc glibc-devel glibc-locale gpm grep groff gzip info insserv syslogd less libacl libattr  libgcc  libselinux libstdc++ libxcrypt  m4 make man mktemp module-init-tools ncurses ncurses-devel net-tools netcfg openldap2-client openssl pam pam-modules patch permissions popt procinfo procps psmisc pwdutils rcs readline sed strace sysvinit tar tcpd texinfo timezone unzip util-linux vim zlib zlib-devel autoconf automake binutils dejagnu expect gcc gcc-c++ f2c gdbm gettext gmp gnuplot gperf libpng libstdc++-devel libtool perl readline-devel rpm tcl te_ams te_latex termcap tetex
-
-Name:         octave
-URL:          http://www.octave.org/
-License:      GPL
-Group:        Productivity/Scientific/Math
-Provides:     matlab4 octave 
-Requires:     gnuplot
-PreReq:       %install_info_prereq
-Autoreqprov:  on
-Version:      2.1.71
-Release:      2_sles9
-Summary:      A high level programming language
-Source:       %{name}-%{version}.tar.bz2
-Patch:        octave-2.1.71.patch
-BuildRoot:    %{_tmppath}/%{name}-%{version}-build
+Name:           octave
+BuildRequires:  dejagnu gcc-c++ gcc-fortran gmp-devel gnuplot gperf readline-devel termcap texlive-latex
+URL:            http://www.octave.org/
+License:        GPL v2 or later
+Group:          Productivity/Scientific/Math
+Provides:       matlab4
+Requires:       gnuplot gcc-fortran texinfo
+PreReq:         %install_info_prereq
+Autoreqprov:    on
+Version:        2.9.12
+Release:        27
+Summary:        A High Level Programming Language
+Source:         %{name}-%{version}.tar.bz2
+Patch:          octave-%{version}-gcc-4.1.diff
+Patch1:         %{name}-%{version}_without-randlib.patch
+BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 %define       regenerate 1
 %define       check	 	0
 
 %description
-Octave is a high level programming language. It's designed for the
+Octave is a high level programming language. It is designed for the
 solution of numeric problems. There is a command line interface
-supplied. This version does not have FFTW or MPI enabled.
+supplied.
+
+
+
+Authors:
+--------
+    John W. Eaton <jwe@bevo.che.wisc.edu>
+    
+    Randlib:
+    venier@odin.mdacc.tmc.edu, bwb@odin.mdacc.tmc.edu
+
+%debug_package
+%package devel
+Summary:        Development files for octave
+Group:          Productivity/Scientific/Math
+Requires:       %{name} = %{version}
+
+%description devel
+This package contains all necessary include files and libraries needed
+to develop applications that require these.
 
 
 
@@ -41,10 +60,10 @@ Authors:
 --------
     John W. Eaton <jwe@bevo.che.wisc.edu>
 
-%debug_package
 %prep
 %setup -q
 %patch
+%patch1
 
 %build
 mkdir m4
@@ -56,6 +75,7 @@ autoconf -f --verbose
 #autoreconf --force --verbose
 CFLAGS="$RPM_OPT_FLAGS -D_GNU_SOURCE -fno-strict-aliasing" \
 CXXFLAGS="$RPM_OPT_FLAGS -D_GNU_SOURCE -fno-strict-aliasing" \
+FFLAGS="-Os" \
 	./configure \
 	--prefix=%{_prefix} \
 	--exec-prefix=%{_prefix} \
@@ -68,26 +88,29 @@ CXXFLAGS="$RPM_OPT_FLAGS -D_GNU_SOURCE -fno-strict-aliasing" \
 	--disable-static \
 	--enable-dl \
 	--enable-lite-kernel
+rm -rf libcruft/ranlib  #without randlib
 echo Building octave...
 # regenerate info files
 touch doc/conf.texi
-make %{?jobs:-j%jobs}
+#parallel building fails on some/all architectures
+make #%{?jobs:-j%jobs}
 %if %check
 make check
 %endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT/
 install -d $RPM_BUILD_ROOT/%_infodir 
 install -d $RPM_BUILD_ROOT/%_mandir
-make exec_prefix=$RPM_BUILD_ROOT/usr \
-    libdir=$RPM_BUILD_ROOT/%_libdir \
-    libexecdir=$RPM_BUILD_ROOT/%_libdir \
-    prefix=$RPM_BUILD_ROOT/usr \
-    mandir=$RPM_BUILD_ROOT/%_mandir \
-    infodir=$RPM_BUILD_ROOT/%_infodir \
-    install 
+make DESTDIR=$RPM_BUILD_ROOT install
+#     exec_prefix=$RPM_BUILD_ROOT/usr \
+#     libdir=$RPM_BUILD_ROOT/%_libdir \
+#     libexecdir=$RPM_BUILD_ROOT/%_libdir \
+#     prefix=$RPM_BUILD_ROOT/usr \
+#     mandir=$RPM_BUILD_ROOT/%_mandir \
+#     infodir=$RPM_BUILD_ROOT/%_infodir \
+#     install 
 #install -m 644 doc/faq/*.info $RPM_BUILD_ROOT%{_infodir}
 #install -m 644 doc/liboctave/*.info $RPM_BUILD_ROOT%{_infodir}
 rm -f $RPM_BUILD_ROOT%{_infodir}/dir
@@ -95,35 +118,84 @@ sed "s@$RPM_BUILD_ROOT@@g" < $RPM_BUILD_ROOT/%{_libdir}/octave/ls-R > xtmp
 mv xtmp $RPM_BUILD_ROOT/%{_libdir}/octave/ls-R
 sed "s@$RPM_BUILD_ROOT@@g" < $RPM_BUILD_ROOT/usr/share/octave/ls-R > xtmp
 mv xtmp $RPM_BUILD_ROOT/usr/share/octave/ls-R
+#sed "s@$RPM_BUILD_ROOT@@g" < $RPM_BUILD_ROOT/usr/include/octave-2.9.12/octave/defaults.h > xtmp
+#mv xtmp $RPM_BUILD_ROOT/usr/include/octave-2.9.12/octave/defaults.h
+#sed "s@$RPM_BUILD_ROOT@@g" < $RPM_BUILD_ROOT/usr/include/octave-2.9.12/octave/oct-conf.h > xtmp
+#mv xtmp $RPM_BUILD_ROOT/usr/include/octave-2.9.12/octave/oct-conf.h
+#sed "s@$RPM_BUILD_ROOT@@g" < $RPM_BUILD_DIR/src/defaults.h > xtmp
+#mv xtmp $RPM_BUILD_DIR/src/defaults.h
+ln -s %{_infodir}/octave.info-1.gz $RPM_BUILD_ROOT/%{_infodir}/octave.info.gz
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post
-%run_ldconfig
+/sbin/ldconfig
 #%install_info --info-dir=%{_infodir} %{_infodir}/Octave-FAQ.info.gz
 #%install_info --info-dir=%{_infodir} %{_infodir}/liboctave.info.gz
-#%install_info --info-dir=%{_infodir} %{_infodir}/octave.info.gz
+%install_info --info-dir=%{_infodir} %{_infodir}/octave.info.gz
 
 %postun
-%run_ldconfig
+/sbin/ldconfig
 #%install_info_delete --info-dir=%{_infodir} %{_infodir}/Octave-FAQ.info.gz
 #%install_info_delete --info-dir=%{_infodir} %{_infodir}/liboctave.info.gz
-#%install_info_delete --info-dir=%{_infodir} %{_infodir}/octave.info.gz
+%install_info_delete --info-dir=%{_infodir} %{_infodir}/octave.info.gz
 
 %files
 %defattr(-,root,root)
 %doc COPYING NEWS README THANKS PROJECTS doc/ChangeLog
 %doc doc/faq/Octave-FAQ.{dvi,ps} doc/interpreter/octave.{dvi,ps}
-%doc doc/liboctave/liboctave.{dvi,ps} doc/refcard/refcard-a4.{dvi,ps}
-/usr/bin/*
+%doc doc/refcard/refcard-a4.{dvi,ps}
+/usr/bin/mkoctfile*
+/usr/bin/octave-bug*
+/usr/bin/octave
+/usr/bin/%{name}-%{version}
 %doc %{_infodir}/*.gz
-%doc %{_mandir}/man1/*.gz
-/usr/include/*
+%doc %{_mandir}/man1/octave.1.gz
+%doc %{_mandir}/man1/octave-bug.1.gz
 %_libdir/octave*
 /usr/share/octave/
 
-%changelog -n octave
+%files devel
+%defattr(-,root,root)
+/usr/include/*
+/usr/bin/*-config*
+%doc %{_mandir}/man1/octave-config.1.gz
+%doc %{_mandir}/man1/mkoctfile.1.gz
+%doc doc/liboctave/liboctave.{dvi,ps} 
+
+%changelog
+* Wed Jul 25 2007 - pgajdos@suse.cz
+- supressed paralell building which fails at least on some
+  architectures
+* Wed Jul 11 2007 - pgajdos@suse.cz
+- updated to 2.9.12 and removed randlib [#279883]
+- without-randlib.patch
+* Thu Jun 21 2007 - pgajdos@suse.cz
+- added texinfo to Requires
+* Fri May 25 2007 - pgajdos@suse.cz
+- made subpackage octave-devel
+* Sat Apr 21 2007 - aj@suse.de
+- Use texlive.
+* Thu Jun 22 2006 - ro@suse.de
+- remove selfprovides
+* Wed May 24 2006 - anicka@suse.cz
+- update to 2.1.73
+  - bugfix release
+* Mon Feb 13 2006 - anicka@suse.cz
+- require gcc-fortran (fixes #150047)
+* Wed Feb 01 2006 - anicka@suse.cz
+- add -Os to FFLAGS (fixes #136787)
+* Wed Jan 25 2006 - mls@suse.de
+- converted neededforbuild to BuildRequires
+* Sat Jan 14 2006 - kukuk@suse.de
+- Add gmp-devel to nfb
+* Thu Jan 05 2006 - anicka@suse.cz
+- update to 2.1.72
+* Mon Nov 14 2005 - anicka@suse.cz
+- fix build (gcc 4.1)
+* Tue Nov 01 2005 - anicka@suse.cz
+- fix build (move code around in CMatrix.cc)
 * Tue Jun 28 2005 - anicka@suse.cz
 - update to 2.1.71
 * Wed May 11 2005 - ro@suse.de
