@@ -4,7 +4,7 @@
 # D. Steuer <detlef.steuer@gmx.de>
 #
 %define ver      0.6
-%define packrel  3
+%define packrel  2
 %define rel      1
 %define packname RSQLite
 %define prefix   /usr
@@ -17,9 +17,9 @@ Copyright: LGPL version 2 or newer
 URL: http://cran.r-project.org/contrib
 Group: Applications/Math
 Summary: R package %{packname} - SQLite interface for R
-BuildRequires: R-base >= 2.6.0 R-DBI
+BuildRequires: R-base >= 2.5.1 R-DBI
 PreReq: R-base 
-Requires:  R-DBI R-base >= 2.6.0
+Requires:  R-DBI R-base
 BuildRoot: /var/tmp/%{packname}-buildroot
 
 %description
