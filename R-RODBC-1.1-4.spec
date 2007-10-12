@@ -17,8 +17,8 @@ Copyright: GPL2
 URL: http://cran.r-project.org/contrib
 Group: Applications/Math
 Summary: R package %{packname} - ODBC database access
-BuildRequires: R-base
-PreReq: R-base
+BuildRequires: R-base 
+PreReq: R-base unixODBC
 BuildRoot: /var/tmp/%{packname}-buildroot
 
 %description
