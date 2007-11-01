@@ -19,7 +19,6 @@ Group: Applications/Math
 Summary: R package %{packname} - Nonparametric kernel smoothing methods for mixed datatypes
 BuildRequires: R-base
 PreReq: R-base
-Requires: R-boot 
 BuildRoot: /var/tmp/%{packname}-buildroot
 
 %description

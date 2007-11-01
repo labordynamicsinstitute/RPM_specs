@@ -57,7 +57,7 @@ rm -rf $RPM_BUILD_ROOT
 cat %{prefix}/lib/R/library/*/CONTENTS > %{prefix}/lib/R/doc/html/search/index.txt
 
 %postun
-%{prefix}/bin/R CMD perl %{prefix}/lib/R/share/perl/build-help.pl --htmllists
+%{prefix}/bin/R CMD perl %{prefix}/lib/R/share/perl/build-help.pl --html
 cat %{prefix}/lib/R/library/*/CONTENTS > %{prefix}/lib/R/doc/html/search/index.txt
 
 %files

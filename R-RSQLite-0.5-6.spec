@@ -3,8 +3,8 @@
 #
 # D. Steuer <detlef.steuer@gmx.de>
 #
-%define ver      0.4
-%define packrel  0
+%define ver      0.5
+%define packrel  6
 %define rel      1
 %define packname RSQLite
 %define prefix   /usr
@@ -17,20 +17,19 @@ Copyright: LGPL version 2 or newer
 URL: http://cran.r-project.org/contrib
 Group: Applications/Math
 Summary: R package %{packname} - SQLite interface for R
-BuildRequires: R-base
-PreReq: R-base
-Requires:  R-DBI
+BuildRequires: R-base >= 2.3.0 R-DBI
+PreReq: R-base 
+Requires:  R-DBI R-base
 BuildRoot: /var/tmp/%{packname}-buildroot
 
 %description
 R package:
 Database Interface R driver for SQLite
-This package embeds the SQLite database engine in R and
-provides an interface compliant with the DBI version 0.1-8.
-The source for the SQLite engine (version 3.2.1 is included here).
+This package embeds the SQLite database engine in R and provides an interface compliant with the DBI package. The source for the SQLite engine (version 3.4.1) is included.
 
 Author(s)
 David A. James <dj@bell-labs.com>
+Maintainer:	Seth Falcon
 
 2005-04-06
 
@@ -55,11 +54,11 @@ test -d %{packname}/src && (cd %{packname}/src; rm -f *.o *.so)
 rm -rf $RPM_BUILD_ROOT
 
 %post
-%{prefix}/bin/R CMD perl %{prefix}/lib/R/share/perl/build-help.pl --htmllists
+%{prefix}/bin/R CMD perl %{prefix}/lib/R/share/perl/build-help.pl --html
 cat %{prefix}/lib/R/library/*/CONTENTS > %{prefix}/lib/R/doc/html/search/index.txt
 
 %postun
-%{prefix}/bin/R CMD perl %{prefix}/lib/R/share/perl/build-help.pl --htmllists
+%{prefix}/bin/R CMD perl %{prefix}/lib/R/share/perl/build-help.pl --html
 cat %{prefix}/lib/R/library/*/CONTENTS > %{prefix}/lib/R/doc/html/search/index.txt
 
 %files

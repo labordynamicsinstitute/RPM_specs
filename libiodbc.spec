@@ -98,7 +98,7 @@ URL: http://www.iodbc.org/
 Source: http://www.iodbc.org/downloads/iODBC/libiodbc-%{PACKAGE_VERSION}.tar.gz
 Prefix: /usr
 BuildRoot:/var/tmp/build-libiodbc-%{PACKAGE_VERSION}
-BuildRequires: gtk1-compat-devel
+BuildRequires: gtk-devel
 AutoReqProv: no
 
 %description
