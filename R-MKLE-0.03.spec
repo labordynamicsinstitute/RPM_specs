@@ -3,7 +3,7 @@
 #
 # D. Steuer <detlef.steuer@gmx.de>
 #
-%define ver      0.02
+%define ver      0.03
 %define packrel  0
 %define rel      1
 %define packname MKLE
