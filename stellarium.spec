@@ -17,7 +17,7 @@ BuildRequires:	gcc-c++ libstdc++ libstdc++-devel zlib zlib-devel curl curl-devel
 BuildRequires:	libogg libogg-devel libvorbis libvorbis-devel make
 BuildRequires:	Mesa-devel libqt4 libqt4-devel >= 4.2.0
 BuildRequires:	cmake >= 2.4.6
-BuildRequires:	update-desktop-files
+BuildRequires:	update-desktop-files boost-devel
 Requires:		dejavu
 
 %description
