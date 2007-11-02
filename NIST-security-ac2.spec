@@ -1,11 +1,12 @@
 Summary:  Implements AC-02 (NIST 800-53)
 Name: NIST-security-ac2
-Version: 1.0
+Version: 1.1
 Release: 1
 License: GPL
 Vendor: Mohammed Chaudhry
 Packager: Lars Vilhuber <lars.vilhuber@cornell.edu>
 Group: System/Security
+Requires: perl
 Source0: dormant.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
@@ -65,6 +66,9 @@ install dormant_accounts.sh %buildroot/etc/profile.d/
 %config /var/log/dormant/exclude
 
 %changelog
+* Fri Nov  2 2007 Lars Vilhuber <lars.vilhuber@cornell.edu> - 1.1-1
+- Update to dormant.pl to echo users to stdout. Also added perl requirement to RPM spec file
+
 * Wed May 16 2007 Lars Vilhuber <lars.vilhuber@cornell.edu> - 1.0-1
 - Changed permissions of /var/log/dormant directory
 - Added a couple of users to the exclude file
