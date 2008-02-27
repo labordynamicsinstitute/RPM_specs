@@ -152,7 +152,7 @@ currently maintained by OpenLink Software under a LGPL or BSD license
 %prep
 %setup
 %build
-./configure --prefix=/usr --libdir=/usr/lib64 --mandir=%{_mandir} --enable-odbc3 --with-iodbc-inidir=/etc/iodbc --enable-pthreads
+./configure --prefix=/usr --libdir=/usr/lib64/iodbc --mandir=%{_mandir} --enable-odbc3 --with-iodbc-inidir=/etc/iodbc --enable-pthreads
 make
 
 %install
@@ -192,8 +192,8 @@ mkdir -p $RPM_BUILD_ROOT/etc
 %files 
 %attr(0755, root, root) /usr/bin/iodbctest
 %attr(0755, root, root) /usr/bin/iodbctestw
-%attr(0755, root, root) /usr/lib64/libiodbc.so.*
-%attr(0755, root, root) /usr/lib64/libiodbcinst.so.*
+%attr(0755, root, root) /usr/lib64/iodbc/libiodbc.so.*
+%attr(0755, root, root) /usr/lib64/iodbc/libiodbcinst.so.*
 %attr(0644, root, root) %{_mandir}/man1/iodbctest.1*
 %attr(0644, root, root) %{_mandir}/man1/iodbctestw.1*
 #%attr(0644, root, root) %config /etc/odbc.ini
@@ -223,23 +223,25 @@ mkdir -p $RPM_BUILD_ROOT/etc
 %attr(0644, root, root) /usr/include/sqlext.h
 %attr(0644, root, root) /usr/include/odbcinst.h
 %attr(0755, root, root) /usr/bin/iodbc-config
-%attr(0644, root, root) /usr/lib64/libiodbc.a
-%attr(0644, root, root) /usr/lib64/libiodbc.la
-%attr(0755, root, root) /usr/lib64/libiodbc.so
-%attr(0644, root, root) /usr/lib64/libiodbcinst.a
-%attr(0644, root, root) /usr/lib64/libiodbcinst.la
-%attr(0755, root, root) /usr/lib64/libiodbcinst.so
+%attr(0644, root, root) /usr/lib64/iodbc/libiodbc.a
+%attr(0644, root, root) /usr/lib64/iodbc/libiodbc.la
+%attr(0755, root, root) /usr/lib64/iodbc/libiodbc.so
+%attr(0644, root, root) /usr/lib64/iodbc/libiodbcinst.a
+%attr(0644, root, root) /usr/lib64/iodbc/libiodbcinst.la
+%attr(0755, root, root) /usr/lib64/iodbc/libiodbcinst.so
 %attr(0644, root, root) %{_mandir}/man1/iodbc-config.1*
 %attr(0644, root, root) /usr/share/libiodbc/samples/Makefile
 %attr(0644, root, root) /usr/share/libiodbc/samples/iodbctest.c
-%attr(0644, root, root) /usr/lib64/pkgconfig/libiodbc.pc
+%attr(0644, root, root) /usr/lib64/iodbc/pkgconfig/libiodbc.pc
+%attr(0644, root, root) /usr/lib64/iodbc/libodbc.a
+%attr(0644, root, root) /usr/lib64/iodbc/libodbc.so
 
 %files admin
 %attr(0755, root, root) /usr/bin/iodbcadm-gtk
-%attr(0644, root, root) /usr/lib64/libdrvproxy.a
-%attr(0644, root, root) /usr/lib64/libdrvproxy.la
-%attr(0755, root, root) /usr/lib64/libdrvproxy.so*
-%attr(0644, root, root) /usr/lib64/libiodbcadm.a
-%attr(0644, root, root) /usr/lib64/libiodbcadm.la
-%attr(0755, root, root) /usr/lib64/libiodbcadm.so*
+%attr(0644, root, root) /usr/lib64/iodbc/libdrvproxy.a
+%attr(0644, root, root) /usr/lib64/iodbc/libdrvproxy.la
+%attr(0755, root, root) /usr/lib64/iodbc/libdrvproxy.so*
+%attr(0644, root, root) /usr/lib64/iodbc/libiodbcadm.a
+%attr(0644, root, root) /usr/lib64/iodbc/libiodbcadm.la
+%attr(0755, root, root) /usr/lib64/iodbc/libiodbcadm.so*
 %attr(0644, root, root) %{_mandir}/man1/iodbcadm-gtk.1*
