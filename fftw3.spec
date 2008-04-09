@@ -11,7 +11,7 @@
 # norootforbuild
 
 Name:           fftw3
-BuildRequires:  gcc-fortran pkgconfig
+BuildRequires:  gcc-g77 pkgconfig
 Summary:        Discrete Fourier Transform (DFT) C Subroutine Library
 Version:        3.1.2
 Release:        32.1
