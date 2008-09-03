@@ -4,9 +4,9 @@ Group: Development/Tools/Version Control
 Summary: Multi-platform client for Subversionexternal link
 URL    : http://smartcvs.com/smartsvn/index.html
 Packager: Lars Vilhuber <lars.vilhuber@cornell.edu>
-Version: 3.0.5
+Version: 4.0.4
 # adjust to match the version above
-%define _version 3_0_5
+%define _version 4_0_4
 Release: 1
 Source0: smartsvn-generic-%{_version}.tar.gz
 Source1: smartsvn-extra.tgz
@@ -33,7 +33,10 @@ tar xzvf %{SOURCE1}
 # the actual application
 install  -d -m 755 %buildroot/opt/smartsvn/bin
 install  -d -m 755 %buildroot/opt/smartsvn/lib
+install  -d -m 755 %buildroot/opt/smartsvn/lib/icons
 install  -p -m 755 -D bin/* %buildroot/opt/smartsvn/bin
+install  -p -m 755 -D lib/icons/* %buildroot/opt/smartsvn/lib/icons
+\rm -rf lib/icons
 install  -p -m 755 -D lib/* %buildroot/opt/smartsvn/lib
 # the link
 install  -d -m 755 %buildroot/usr/bin
@@ -42,7 +45,6 @@ ln -s ../../opt/smartsvn/bin/smartsvn.sh %buildroot/usr/bin/smartsvn
 install  -d -m 755 %buildroot/usr/share/applications
 install  -p -m 755 smartsvn.desktop %buildroot/usr/share/applications/smartsvn.desktop
 # now for the icons
-install  -d -m 755 %buildroot/opt/smartsvn/lib/icons
 install  -p -m 755 icon16.png %buildroot/opt/smartsvn/lib/icons/
 install  -p -m 755 icon32.png %buildroot/opt/smartsvn/lib/icons/
 install  -p -m 755 icon48.png %buildroot/opt/smartsvn/lib/icons/
@@ -57,12 +59,15 @@ install  -p -m 755 icon64.png %buildroot/opt/smartsvn/lib/icons/
 
 
 %files
-%doc changelog.txt license.html smartsvn.pdf smartsvn.url
+%doc changelog.txt readme-linux.txt license.html smartsvn-reference.pdf smartsvn.url
 %attr(755,root,root) /opt/smartsvn
 %attr(755,root,root) /usr/bin/smartsvn
 %attr(755,root,root) /usr/share/applications/smartsvn.desktop
 
 %changelog
+* Wed Sep  3 2008 Lars Vilhuber <lars.vilhuber@cornell.edu> - 4.0.4-1
+- Updated to 4.0.4
+
 * Wed Sep  5 2007 Lars Vilhuber <lars.vilhuber@cornell.edu> - 3.0.2-0
 - Updated to 3.0.2
 
