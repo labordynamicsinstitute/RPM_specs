@@ -1,16 +1,29 @@
 %define name sqliteodbc
-%define version 0.75
+%define version 0.79
 %define release 1
 
 Name: %{name}
 Summary: ODBC driver for SQLite
 Version: %{version}
 Release: %{release}
+Packager: Lars Vilhuber <virtualrdc -at- cornell -dot- edu>
 Source: http://www.ch-werner.de/sqliteodbc/%{name}-%{version}.tar.gz
 Group: Applications/Databases
 URL: http://www.ch-werner.de/sqliteodbc
 License: BSD
 BuildRoot: %{_tmppath}/%{name}-%{version}-root-%(id -u)
+Requires:  /usr/bin/odbcinst
+
+%if 0%{?suse_version}
+%if 0%{?suse_version} >= 1020
+BuildRequires: sqlite3-devel sqlite2-devel unixODBC-devel
+%endif
+%if 0%{?sles_version} == 9
+BuildRequires: sqlite-devel unixODBC-devel
+%endif
+%else
+BuildRequires: sqlite-devel unixODBC-devel
+%endif
 
 %description
 ODBC driver for SQLite interfacing SQLite 2.x and/or 3.x using the
@@ -45,6 +58,7 @@ if [ -x /usr/bin/odbcinst ] ; then
 Description=SQLite ODBC 2.X
 Driver=%{_libdir}/libsqliteodbc.so
 Setup=%{_libdir}/libsqliteodbc.so
+Threading=2
 FileUsage=1
 EOD
       /usr/bin/odbcinst -q -d -n SQLITE | grep '^\[SQLITE\]' >/dev/null || {
@@ -65,6 +79,7 @@ EOD
 Description=SQLite ODBC 3.X
 Driver=%{_libdir}/libsqlite3odbc.so
 Setup=%{_libdir}/libsqlite3odbc.so
+Threading=2
 FileUsage=1
 EOD
       /usr/bin/odbcinst -q -d -n SQLITE3 | grep '^\[SQLITE3\]' >/dev/null || {
@@ -99,5 +114,8 @@ fi
 %{_libdir}/*.so*
 
 %changelog
-* Sat Aug 04 2007 ...
+* Wed Oct 29 2008 Lars Vilhuber <lars.vilhuber@cornell.edu> - 0.79-1
+- configured for openSUSE build service
+
+* Mon Sep 29 2008 ...
 - automatically recreated by configure ...
