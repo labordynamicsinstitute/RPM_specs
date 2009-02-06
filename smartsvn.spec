@@ -4,9 +4,9 @@ Group: Development/Tools/Version Control
 Summary: Multi-platform client for Subversionexternal link
 URL    : http://smartcvs.com/smartsvn/index.html
 Packager: Lars Vilhuber <lars.vilhuber@cornell.edu>
-Version: 4.0.7
+Version: 5.0.3
 # adjust to match the version above
-%define _version 4_0_7
+%define _version 5_0_3
 Release: 1
 Source0: smartsvn-generic-%{_version}.tar.gz
 Source1: smartsvn-extra.tgz
@@ -23,14 +23,19 @@ SmartSVN is the consequent successor of SmartCVS, which helps thousands of users
 SmartSVN is available in two versions, a free Foundation version and the powerful Professional version.
 
 %prep
-%setup -n smartsvn-%{_version}
+#%setup -n smartsvn-%{_version}
+%setup -c -T
+tar xzvf %{SOURCE0} --strip-components 1
 
 %build
 # also extract the extras
+#cd smartsvn-%{version}
 tar xzvf %{SOURCE1}
+
 
 %install
 # the actual application
+#cd smartsvn-%{version}
 install  -d -m 755 %buildroot/opt/smartsvn/bin
 install  -d -m 755 %buildroot/opt/smartsvn/lib
 install  -d -m 755 %buildroot/opt/smartsvn/lib/icons
@@ -56,15 +61,18 @@ install  -p -m 755 icon64.png %buildroot/opt/smartsvn/lib/icons/
 %postun
 
 %clean
-
+\rm -rf smartsvn-%{version}
 
 %files
-%doc changelog.txt readme-linux.txt license.html smartsvn-reference.pdf smartsvn.url
+%doc changelog.txt readme-linux.txt license.html smartsvn.pdf smartsvn.url
 %attr(755,root,root) /opt/smartsvn
 %attr(755,root,root) /usr/bin/smartsvn
 %attr(755,root,root) /usr/share/applications/smartsvn.desktop
 
 %changelog
+* Fri Feb  6 2009 Lars Vilhuber <lars.vilhuber@cornell.edu> - 5.0.3-1
+- Updated to 5.0.3
+
 * Wed Sep  3 2008 Lars Vilhuber <lars.vilhuber@cornell.edu> - 4.0.4-1
 - Updated to 4.0.4
 
