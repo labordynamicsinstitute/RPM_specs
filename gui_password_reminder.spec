@@ -1,10 +1,10 @@
-Name: gui_password_reminder
+Name: gui_password_reminder-SRD
 License: None
 Group: System
 Summary: Little GUI reminder for expiring passwords
 Packager: Lars Vilhuber <lars.vilhuber@cornell.edu>
 Version: 1
-Release: 2
+Release: 3
 Source0: password_expire.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-build 
 BuildArch: noarch
@@ -44,6 +44,9 @@ install  -p -m 755 password_expire.desktop  %buildroot/opt/kde3/share/autostart
 %attr(755,root,root) /usr/bin/password_expire.sh
 
 %changelog
+* Fri Feb  6 2009 Lars Vilhuber <lars.vilhuber@cornell.edu> - 1-3
+- Changed name to include SRD
+
 * Tue Nov 25 2008 Lars Vilhuber <lars.vilhuber@cornell.edu> - 1-1
 - Changed permissions on desktop file
 
