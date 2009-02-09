@@ -4,7 +4,7 @@ Group: Application/Statistics
 Summary: SAS 9.1.3 
 Packager: Lars Vilhuber
 Version: 9.1.3
-Release: 3
+Release: 4
 Source0: SAS_9.1.3_installed.tgz
 Source1: SAS-desktop.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-build 
@@ -31,8 +31,7 @@ cd %buildroot
 tar xf %{SOURCE0} 
 ln -s /opt/SAS_9.1.3/sas %buildroot/usr/local/bin/sas913
 ln -s sas913 %buildroot/usr/local/bin/sas91
-ln -s sas91 %buildroot/usr/local/bin/sas9
-ln -s sas9 %buildroot/usr/local/bin/sas
+
 
 # install the desktop stuff 
 install -d %buildroot/opt/kde3/share/applications
@@ -52,18 +51,18 @@ tar xf %{SOURCE1}
 
 %config
 /opt/SAS_9.1.3/sasv9_local.cfg
-
 /opt/SAS_9.1.3
 
 %files desktop
 %defattr(755,root,root)
 /opt/kde3/share/applications/SAS.desktop
-/usr/local/bin/sas
-/usr/local/bin/sas9
 /usr/local/bin/sas91
 /usr/local/bin/sas913
 
 %changelog
+* Mon Feb  9 2009 Lars Vilhuber <lars.vilhuber@cornell.edu> - 9.1.3-4
+- Removed the default SAS link
+
 * Tue Aug 21 2007 Lars Vilhuber <lars.vilhuber@cornell.edu> - 9.1.3-3
 - Updated with all applicable post-SP4 hotfixes
 

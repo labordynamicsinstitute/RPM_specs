@@ -4,7 +4,7 @@ Group: Application/Statistics
 Summary: Make SAS the default
 Packager: Lars Vilhuber
 Version: 9.3.1
-Release: 0
+Release: 1
 BuildArch: noarch
 BuildRoot: %{_tmppath}/%{name}-%{version}-build 
 Requires: sas
@@ -20,7 +20,9 @@ Creates links for SAS
 # install the desktop stuff 
 install -d %buildroot/usr/local/bin
 cd %buildroot/usr/local/bin
-ln -s /opt/SAS_9.1.3/sas sas
+ln -s sas91 sas9
+ln -s sas9 sas
+
 %post
 
 
@@ -36,6 +38,9 @@ ln -s /opt/SAS_9.1.3/sas sas
 
 
 %changelog
+* Mon Feb  9 2009 Lars Vilhuber <lars.vilhuber@cornell.edu> - 9.3.1-1
+- Made the link relative to /usr/local/bin
+
 * Tue Oct  2 2007 Lars Vilhuber <lars.vilhuber@cornell.edu> - 9-1
 - Initial build
 
