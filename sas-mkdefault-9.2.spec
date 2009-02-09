@@ -3,7 +3,7 @@ License: Commercial
 Group: Application/Statistics
 Summary: Make SAS the default
 Packager: Lars Vilhuber
-Version: 9.1.3
+Version: 9.2
 Release: 1
 BuildArch: noarch
 BuildRoot: %{_tmppath}/%{name}-%{version}-build 
@@ -20,7 +20,7 @@ Creates links for SAS
 # install the desktop stuff 
 install -d %buildroot/usr/local/bin
 cd %buildroot/usr/local/bin
-ln -s sas91 sas9
+ln -s sas92 sas9
 ln -s sas9 sas
 
 %post
@@ -36,6 +36,7 @@ ln -s sas9 sas
 %defattr(755,root,root)
 /usr/local/bin/sas
 /usr/local/bin/sas9
+
 
 %changelog
 * Mon Feb  9 2009 Lars Vilhuber <lars.vilhuber@cornell.edu> - 9.3.1-1
