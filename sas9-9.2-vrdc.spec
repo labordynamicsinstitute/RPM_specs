@@ -1,10 +1,10 @@
-Name: sas9-desktop
+Name: sas9
 License: Commercial
 Group: Applications/Statistics
 Summary: SAS 9.2 
 Packager: Lars Vilhuber
 Version: 9.2
-Release: 1
+Release: 2
 Source0: sasv9_local_cfg.tgz
 Source1: SAS92-desktop.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-build 
@@ -28,7 +28,7 @@ Creates links and desktop icons for SAS.
 install -d %buildroot/opt/SAS_9.2/SASFoundation/9.2/
 install -d %buildroot/usr/local/bin
 cd %buildroot/opt/SAS_9.2/SASFoundation/9.2/
-[[ -f sas ]] || touch sas
+#[[ -f sas ]] || touch sas
 tar xf %{SOURCE0} 
 ln -s /opt/SAS_9.2/SASFoundation/9.2/sas %buildroot/usr/local/bin/sas92
 
@@ -53,7 +53,7 @@ tar xf %{SOURCE1}
 
 %config
 /opt/SAS_9.2/SASFoundation/9.2/sasv9_local.cfg
-/opt/SAS_9.2/SASFoundation/9.2/
+
 
 %files desktop
 %defattr(755,root,root)
