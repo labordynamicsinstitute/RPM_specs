@@ -4,15 +4,15 @@ Group: Development/Tools/Version Control
 Summary: Multi-platform client for Subversionexternal link
 URL    : http://smartcvs.com/smartsvn/index.html
 Packager: Lars Vilhuber <lars.vilhuber@cornell.edu>
-Version: 5.0.3
+Version: 6
 # adjust to match the version above
-%define _version 5_0_3
+%define _version %version
 Release: 1
 Source0: smartsvn-generic-%{_version}.tar.gz
 Source1: smartsvn-extra.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-build 
 BuildArch: noarch
-Requires: java >= 1.4.2
+Requires: jre-sun >= 1.6
 
 
 %description
@@ -23,15 +23,18 @@ SmartSVN is the consequent successor of SmartCVS, which helps thousands of users
 SmartSVN is available in two versions, a free Foundation version and the powerful Professional version.
 
 %prep
-#%setup -n smartsvn-%{_version}
-%setup -c -T
-tar xzvf %{SOURCE0} --strip-components 1
+%setup -n smartsvn-%{_version}
+#%setup -c -T
+#tar xzvf %{SOURCE0} --strip-components 1
 
 %build
 # also extract the extras
 #cd smartsvn-%{version}
 tar xzvf %{SOURCE1}
-
+# patch the shell script
+cd bin
+mv smartsvn.sh smartsvn.sh.bak
+sed 's+#JAVA_HOME=/usr/lib/java+JAVA_HOME=/etc/alternatives/jre_sun+' smartsvn.sh.bak > smartsvn.sh
 
 %install
 # the actual application
@@ -40,8 +43,8 @@ install  -d -m 755 %buildroot/opt/smartsvn/bin
 install  -d -m 755 %buildroot/opt/smartsvn/lib
 install  -d -m 755 %buildroot/opt/smartsvn/lib/icons
 install  -p -m 755 -D bin/* %buildroot/opt/smartsvn/bin
-install  -p -m 755 -D lib/icons/* %buildroot/opt/smartsvn/lib/icons
-\rm -rf lib/icons
+#install  -p -m 755 -D lib/icons/* %buildroot/opt/smartsvn/lib/icons
+#\rm -rf lib/icons
 install  -p -m 755 -D lib/* %buildroot/opt/smartsvn/lib
 # the link
 install  -d -m 755 %buildroot/usr/bin
