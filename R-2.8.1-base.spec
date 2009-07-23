@@ -1,4 +1,4 @@
-# spec file for R 2.5.1
+# spec file for R 2.8.1
 # usable at least with SuSE 10.[0123]  probably others.
 # R is now part of the OpenSUSE Build Service
 # D. Steuer <steuer@hsu-hh.de>
@@ -9,7 +9,7 @@
 %define prefix /usr
 
 Name: R-base
-%define version 2.5.1
+%define version 2.8.1
 %define release 1 
 
 Version: %version
@@ -80,7 +80,7 @@ R_PAPERSIZE=letter CXXFLAGS="-g -O2" CFLAGS="-g -O2" FFLAGS="-g -O2" ./configure
 TEXINPUTS="" BIBINPUTS="" make 
 TEXINPUTS="" BIBINPUTS="" make dvi
 TEXINPUTS="" BIBINPUTS="" make pdf
-TEXINPUTS="" BIBINPUTS="" make info
+#TEXINPUTS="" BIBINPUTS="" make info
 TEXINPUTS="" BIBINPUTS="" make check
 
 %install -n R-%{version}
@@ -93,7 +93,7 @@ mkdir -p $RPM_BUILD_ROOT%prefix/share/info
 mkdir -p $RPM_BUILD_ROOT%prefix/share/man/man1
 
 # install info files:
-cp doc/manual/*.info* $RPM_BUILD_ROOT%prefix/share/info
+#cp doc/manual/*.info* $RPM_BUILD_ROOT%prefix/share/info
 # Info files are installes with make install by default now.
 
 # install pdf files:
@@ -137,7 +137,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc README
 %doc %{prefix}/share/man/man1/R.1*
 %doc %{prefix}/share/man/man1/Rscript.1*
-%doc %{prefix}/share/info/*info*
+#%doc %{prefix}/share/info/*info*
 %{prefix}/bin/R
 %{prefix}/bin/Rscript
 #%{prefix}/%{ILD}/R/COPYING
