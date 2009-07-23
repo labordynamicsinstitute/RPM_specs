@@ -50,11 +50,15 @@ Note that it is premised on the R package from CRAN (for RHEL5). Mileage with
 different R packages (f.i. from EPEL) may vary.
 
 %prep
-mkdir -p -m 757 %buildroot/usr/%archlib/R/library/
+%setup -n R-packages -c -T
+mkdir -p -m 777 %buildroot/usr/%archlib/R/library/
 rm -rf %buildroot/usr/%archlib/R/library/*
+
 %build
-mkdir -p -m 757 %buildroot/usr/%archlib/R/library/
+mkdir -p -m 777 %buildroot/usr/%archlib/R/library/
 rm -rf %buildroot/usr/%archlib/R/library/*
+pwd
+echo "%buildroot" 
 for pkg in %{packages}
 do
 [[ -z $pkgs ]] && pkgs="'$pkg'" || pkgs="$pkgs , '$pkg'"
