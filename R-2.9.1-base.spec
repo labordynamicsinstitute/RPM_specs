@@ -102,21 +102,24 @@ for i in doc/manual/*.pdf; do
 done
 
 # install binary distribution:
-make prefix=$RPM_BUILD_ROOT%prefix install
+%makeinstall
+
+#make prefix=$RPM_BUILD_ROOT%prefix install
+
 
 # remove references to build directory
 
-mv $RPM_BUILD_ROOT%prefix/bin/R $RPM_BUILD_ROOT%prefix/bin/R.tmp
-cat $RPM_BUILD_ROOT%prefix/bin/R.tmp | \
-  sed -e s#$RPM_BUILD_ROOT%prefix/%{ILD}/R#%prefix/%{ILD}/R# \
-  > $RPM_BUILD_ROOT%prefix/bin/R
-chmod 755 $RPM_BUILD_ROOT%prefix/bin/R
-mv $RPM_BUILD_ROOT%prefix/%{ILD}/R/bin/R $RPM_BUILD_ROOT%prefix/%{ILD}/R/bin/R.tmp
-cat $RPM_BUILD_ROOT%prefix/%{ILD}/R/bin/R.tmp | \
-  sed -e s#$RPM_BUILD_ROOT%prefix/%{ILD}/R#%prefix/%{ILD}/R# \
-  > $RPM_BUILD_ROOT%prefix/%{ILD}/R/bin/R
-chmod 755 $RPM_BUILD_ROOT%prefix/%{ILD}/R/bin/R
-rm -f $RPM_BUILD_ROOT%prefix/%{ILD}/R/bin/R.tmp
+#mv $RPM_BUILD_ROOT%prefix/bin/R $RPM_BUILD_ROOT%prefix/bin/R.tmp
+#cat $RPM_BUILD_ROOT%prefix/bin/R.tmp | \
+ # sed -e s#$RPM_BUILD_ROOT%prefix/%{ILD}/R#%prefix/%{ILD}/R# \
+ # > $RPM_BUILD_ROOT%prefix/bin/R
+#chmod 755 $RPM_BUILD_ROOT%prefix/bin/R
+#mv $RPM_BUILD_ROOT%prefix/%{ILD}/R/bin/R $RPM_BUILD_ROOT%prefix/%{ILD}/R/bin/R.tmp
+#cat $RPM_BUILD_ROOT%prefix/%{ILD}/R/bin/R.tmp | \
+ # sed -e s#$RPM_BUILD_ROOT%prefix/%{ILD}/R#%prefix/%{ILD}/R# \
+ # > $RPM_BUILD_ROOT%prefix/%{ILD}/R/bin/R
+#chmod 755 $RPM_BUILD_ROOT%prefix/%{ILD}/R/bin/R
+#rm -f $RPM_BUILD_ROOT%prefix/%{ILD}/R/bin/R.tmp
 
 #mv $RPM_BUILD_ROOT%prefix/man/man1/R* \
 #   $RPM_BUILD_ROOT%prefix/share/man/man1/

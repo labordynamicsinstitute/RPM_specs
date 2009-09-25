@@ -1,10 +1,12 @@
 # adjust this upon updates
-#boot  class cluster codetools foreign KernSmooth lattice MASS Matrix  mgcv nlme nnet rpart spatial survival 
-%define packages abind acepack akima bayesm  car chron  coda    corpcor   DBI  degreenet  delt  denpro  Design   dynamicGraph entropy  ergm  fBasics  fdrtool  feature   gam  GenKern  geoR  ggm   hexbin Hmisc  impute  kernlab ks  latentnet leaps lme4  logspline lpSolve mapproj  maps  maptools  maptree   Matching mclust    MEMSS  mitools misc3d  MKLE  mlmRev  mvtnorm  network  networksis  norm  np  numDeriv  nws  plugdensity  plyr quantreg  R2WinBUGS  RandomFields  randomForest  RArcInfo  rbugs  RColorBrewer   reshape  rgenoud  rgl  Rglpk   rlecuyer  robustbase    rpanel    RSQLite  RUnit  rv sampling samr  SASxport  scatterplot3d  sda  sgeostat  shapes  sm  sna  snow  sp  SparseM  splancs st  statmod  statnet survey  tcltk2  TeachingDemos  timeDate  timeSeries  tkrplot  tree  tripack  tweedie  Umacs  
+#boot  class cluster codetools foreign KernSmooth lattice MASS Matrix  mgcv nlme nnet rpart spatial survival  norm
+%define packages abind acepack akima bayesm  car chron  coda    corpcor   DBI  degreenet  delt  denpro  Design   dynamicGraph entropy  ergm  fBasics  fdrtool  feature   gam  GenKern  geoR  ggm   hexbin Hmisc  impute  kernlab ks  latentnet leaps lme4  logspline lpSolve mapproj  maps  maptools  maptree   Matching mclust    MEMSS  mitools misc3d  MKLE  mlmRev  mvtnorm  network  networksis  np  numDeriv  nws  plugdensity  plyr quantreg  R2WinBUGS  RandomFields  randomForest  RArcInfo  rbugs  RColorBrewer   reshape  rgenoud  rgl  Rglpk   rlecuyer  robustbase   rpanel    RSQLite  RUnit  rv sampling samr  SASxport  scatterplot3d  sda  sgeostat  shapes  sm  sna  snow  sp  SparseM  splancs st  statmod  statnet survey   TeachingDemos  timeDate  timeSeries  tkrplot  tree  tripack  tweedie  Umacs  arm 
+#tcltk2 
+#RODBC RMySQL
 # The R version should correspond to the R package being installed.
 # it will be transformed into an explicit dependency
-#removed VR because it was breaking (it is a bundle of other packages MASS class nnet spatial)
-%define Rversion 2.9.1 
+
+%define Rversion 2.9.2 
 
 Name: R-packages-special
 License: GPL
@@ -12,7 +14,7 @@ Group: Application/Statistics
 Summary: R packages for (V)RDC and Hurricane
 Packager: Lars Vilhuber <lars.vilhuber@cornell.edu>
 Version: %{Rversion}
-Release: 1
+Release: 2
 BuildRoot: %{_tmppath}/%{name}-%{version}-build 
 BuildRequires: R-base >= %{Rversion} 
 
@@ -70,12 +72,15 @@ EOF
 R --vanilla < install.R
 
 # create filelist
+
 [[ -f filelist.R ]] && rm -f filelist.R
-for pkg in %{packages}
-do
-echo "/usr/%archlib/R/library/$pkg" >> filelist.R
-done
-echo "/usr/%archlib/R/library/R.css" >> filelist.R
+
+ls -1 %buildroot/usr/%archlib/R/library |/bin/sed -e 's/^/\/usr\/%archlib\/R\/library\//'  > filelist.R
+#for pkg in %{packages}
+#do
+#echo "/usr/%archlib/R/library/$pkg" >> filelist.R
+#done
+#echo "/usr/%archlib/R/library/R.css" >> filelist.R
  
 %install
 cd %buildroot
@@ -90,6 +95,12 @@ mkdir -p -m 777 %buildroot/usr/%archlib/R/library/
 rm -r %buildroot
 
 %changelog
+*Thu Aug 27 2009 Ian Schmutte -2.9.2-2
+-updated spec file to R 2.9.2
+* Thu  Jul 23 2009 Ian Schmutte <ims28@cornell.edu> -2.9.1
+- removed package 'norm' from the list
+- changed the manner in which filelist.R is wrapped up.
+
 * Thu Jul 23 2009 Lars Vilhuber <lv39@vrdc6401.vrdc.cornell.edu> - 2.9.1 -1
 - Made the lib references more flexible
 - Removed the RHEL reference from the version number - may need to make that more flexible
