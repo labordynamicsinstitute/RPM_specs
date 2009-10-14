@@ -4,10 +4,11 @@ Group: Applications/Statistics
 Summary: SAS 9.2 
 Packager: Lars Vilhuber
 Version: 9.2
-Release: 2
-Source0: sasv9_local_cfg.tgz
+Release: 3
+Source0: sasv9_local.cfg
 Source1: SAS92-desktop.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-build 
+Provides: sas
 
 %description
 Manages installation of SAS. 
@@ -15,9 +16,16 @@ Manages installation of SAS.
 %package desktop
 Group: Applications/Statistics
 BuildArch: noarch
-Summary: SAS 9.2 desktop links
+Summary: SAS %{version} desktop links
 %description desktop
 Creates links and desktop icons for SAS.
+
+%package mkdefault
+Group: Applications/Statistics
+BuildArch: noarch
+Summary: Make SAS %{version} the default  
+%description mkdefault
+Creates links for SAS %{version}
 
 %prep
 
@@ -25,12 +33,14 @@ Creates links and desktop icons for SAS.
 
 %install
 # install the base SAS
-install -d %buildroot/opt/SAS_9.2/SASFoundation/9.2/
+install -d %buildroot/opt/SAS_%{version}/SASFoundation/%{version}/
 install -d %buildroot/usr/local/bin
-cd %buildroot/opt/SAS_9.2/SASFoundation/9.2/
+cd %buildroot/opt/SAS_%{version}/SASFoundation/%{version}/
 #[[ -f sas ]] || touch sas
-tar xf %{SOURCE0} 
-ln -s /opt/SAS_9.2/SASFoundation/9.2/sas %buildroot/usr/local/bin/sas92
+install %{SOURCE0} %buildroot/opt/SAS_%{version}/SASFoundation/%{version}/sasv9_local.cfg
+touch %buildroot/usr/local/bin/sas92
+touch %buildroot/usr/local/bin/sas9
+touch %buildroot/usr/local/bin/sas
 
 
 
@@ -40,7 +50,11 @@ cd %buildroot
 tar xf %{SOURCE1}
 
 %post
+test -e  /opt/SAS_%{version}/SASFoundation/%{version}/sas && ln -sf /opt/SAS_%{version}/SASFoundation/%{version}/sas /usr/local/bin/sas92
 
+%post mkdefault
+ln -sf /usr/local/bin/sas92 /usr/local/bin/sas9
+ln -sf /usr/local/bin/sas9 /usr/local/bin/sas
 
 %preun
 
@@ -52,13 +66,18 @@ tar xf %{SOURCE1}
 %defattr(755,root,root)
 
 %config
-/opt/SAS_9.2/SASFoundation/9.2/sasv9_local.cfg
+/opt/SAS_%{version}/SASFoundation/%{version}/sasv9_local.cfg
 
 
 %files desktop
 %defattr(755,root,root)
 /opt/kde3/share/applications/SAS92.desktop
 /usr/local/bin/sas92
+
+%files mkdefault
+%defattr(755,root,root)
+/usr/local/bin/sas9
+/usr/local/bin/sas
 
 
 %changelog
