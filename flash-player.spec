@@ -4,11 +4,11 @@ Group: Applications/Internet
 Summary: Adobe Flash Player 10.0 alpha refresh
 Packager: Lars Vilhuber
 Vendor: Adobe Systems Inc.
-Version: 10.0.d21.1
+Version: 10.0.32.18
 Release: 1
 URL: http://labs.adobe.com/downloads/flashplayer10.html
 BuildArch: x86_64
-Source0: libflashplayer-10.0.d21.1.linux-x86_64.so.tar.gz
+Source0: libflashplayer-%{version}.linux-x86_64.so.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-build 
 
 

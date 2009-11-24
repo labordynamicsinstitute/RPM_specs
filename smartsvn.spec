@@ -4,9 +4,9 @@ Group: Development/Tools/Version Control
 Summary: Multi-platform client for Subversionexternal link
 URL    : http://smartcvs.com/smartsvn/index.html
 Packager: Lars Vilhuber <lars.vilhuber@cornell.edu>
-Version: 6
+Version: 6.0.8
 # adjust to match the version above
-%define _version %version
+%define _version 6_0_8
 Release: 1
 Source0: smartsvn-generic-%{_version}.tar.gz
 Source1: smartsvn-extra.tgz
@@ -23,9 +23,9 @@ SmartSVN is the consequent successor of SmartCVS, which helps thousands of users
 SmartSVN is available in two versions, a free Foundation version and the powerful Professional version.
 
 %prep
-%setup -n smartsvn-%{_version}
-#%setup -c -T
-#tar xzvf %{SOURCE0} --strip-components 1
+#%setup -n smartsvn-%{_version}
+%setup -c -T
+tar xzvf %{SOURCE0} --strip-components 1
 
 %build
 # also extract the extras

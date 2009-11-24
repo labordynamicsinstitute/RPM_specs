@@ -49,8 +49,8 @@ install -d %buildroot/opt/kde3/share/applications
 cd %buildroot
 tar xf %{SOURCE1}
 
-%post
-test -e  /opt/SAS_%{version}/SASFoundation/%{version}/sas && ln -sf /opt/SAS_%{version}/SASFoundation/%{version}/sas /usr/local/bin/sas92
+%post desktop
+ln -sf /opt/SAS_%{version}/SASFoundation/%{version}/sas /usr/local/bin/sas92
 
 %post mkdefault
 ln -sf /usr/local/bin/sas92 /usr/local/bin/sas9
