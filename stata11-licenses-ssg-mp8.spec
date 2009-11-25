@@ -14,6 +14,7 @@ BuildArch: noarch
 This is the SSG cross-platform Linux stata license. You will need to install it before initializing Stata.
 
 %prep
+mkdir %buildroot
 
 %build
 
