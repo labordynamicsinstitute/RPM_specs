@@ -72,21 +72,21 @@ cd %buildroot
 install -d %buildroot/usr/local/bin
 tar xzvf %{SOURCE0}  
 [[ -f usr/local/stata11/stata.lic ]] && \rm -f usr/local/stata11/stata.lic
-ln -s ../stata11/stata %buildroot/usr/local/bin/stata11
-ln -s ../stata11/xstata %buildroot/usr/local/bin/xstata11
-ln -s ../stata11/stata-se %buildroot/usr/local/bin/stata11-se
-ln -s ../stata11/xstata-se %buildroot/usr/local/bin/xstata11-se
-ln -s ../stata11/stata-mp %buildroot/usr/local/bin/stata11-mp
-ln -s ../stata11/xstata-mp %buildroot/usr/local/bin/xstata11-mp
+ln -sf ../stata11/stata %buildroot/usr/local/bin/stata11
+ln -sf ../stata11/xstata %buildroot/usr/local/bin/xstata11
+ln -sf ../stata11/stata-se %buildroot/usr/local/bin/stata11-se
+ln -sf ../stata11/xstata-se %buildroot/usr/local/bin/xstata11-se
+ln -sf ../stata11/stata-mp %buildroot/usr/local/bin/stata11-mp
+ln -sf ../stata11/xstata-mp %buildroot/usr/local/bin/xstata11-mp
 
 # install the default stuff 
 cd %buildroot/usr/local/bin
-ln -s stata11 stata
-ln -s stata11-se stata-se
-ln -s stata11-mp stata-mp
-ln -s xstata11 xstata
-ln -s xstata11-se xstata-se
-ln -s xstata11-mp xstata-mp
+ln -sf stata11 stata
+ln -sf stata11-se stata-se
+ln -sf stata11-mp stata-mp
+ln -sf xstata11 xstata
+ln -sf xstata11-se xstata-se
+ln -sf xstata11-mp xstata-mp
 
 #------------------------------------------------
 # after uninstalling, clean up any leftover files
