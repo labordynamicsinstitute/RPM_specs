@@ -4,7 +4,7 @@ Group: Applications/Statistics
 Summary: SAS 9.2 
 Packager: Lars Vilhuber
 Version: 9.2
-Release: 3
+Release: 4
 Source0: sasv9_local.cfg
 Source1: SAS92-desktop.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-build 
@@ -49,7 +49,7 @@ install -d %buildroot/opt/kde3/share/applications
 cd %buildroot
 tar xf %{SOURCE1}
 
-%post desktop
+%post 
 ln -sf /opt/SAS_%{version}/SASFoundation/%{version}/sas /usr/local/bin/sas92
 
 %post mkdefault
@@ -58,7 +58,12 @@ ln -sf /usr/local/bin/sas9 /usr/local/bin/sas
 
 %preun
 
-%postun
+%postun 
+rm -f /usr/local/bin/sas92
+
+%postun mkdefault
+rm -f /usr/local/bin/sas9
+rm -f /usr/local/bin/sas
 
 %clean
 
@@ -67,12 +72,11 @@ ln -sf /usr/local/bin/sas9 /usr/local/bin/sas
 
 %config
 /opt/SAS_%{version}/SASFoundation/%{version}/sasv9_local.cfg
-
+/usr/local/bin/sas92
 
 %files desktop
 %defattr(755,root,root)
 /opt/kde3/share/applications/SAS92.desktop
-/usr/local/bin/sas92
 
 %files mkdefault
 %defattr(755,root,root)
