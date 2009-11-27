@@ -4,7 +4,7 @@ Group: Application/Statistics
 Summary: Stata 11 (standard) from Stata.com 
 Packager: Lars Vilhuber <lars.vilhuber@cornell.edu>
 Version: 11.0 
-Release: 1 
+Release: 2 
 BuildRoot: %{_tmppath}/%{name}-%{version}-build 
 Source0: stata11-%{_arch}.tgz 
 Source1: stata11-desktop.tgz
@@ -52,7 +52,7 @@ Summary: Make Stata 11 the default
 Requires: stata11 >= 11.0
 
 %description mkdefault
-Creates links for Stata 10
+Creates links for Stata 11
 
 %prep
 
@@ -81,12 +81,12 @@ ln -s ../stata11/xstata-mp %buildroot/usr/local/bin/xstata11-mp
 
 # install the default stuff 
 cd %buildroot/usr/local/bin
-ln -s stata10 stata
-ln -s stata10-se stata-se
-ln -s stata10-mp stata-mp
-ln -s xstata10 xstata
-ln -s xstata10-se xstata-se
-ln -s xstata10-mp xstata-mp
+ln -s stata11 stata
+ln -s stata11-se stata-se
+ln -s stata11-mp stata-mp
+ln -s xstata11 xstata
+ln -s xstata11-se xstata-se
+ln -s xstata11-mp xstata-mp
 
 #------------------------------------------------
 # after uninstalling, clean up any leftover files
