@@ -62,10 +62,10 @@ Creates links for Stata 11
 # install the desktop files
 tar xzf %{SOURCE1}
 # install the desktop stuff 
-install -d %buildroot/opt/kde3/share/applications
-install Stata11.desktop %buildroot/opt/kde3/share/applications
-install Stata11-SE.desktop %buildroot/opt/kde3/share/applications
-install Stata11-MP.desktop %buildroot/opt/kde3/share/applications
+install -d %buildroot/usr/share/applications
+install Stata11.desktop %buildroot/usr/share/applications
+install Stata11-SE.desktop %buildroot/usr/share/applications
+install Stata11-MP.desktop %buildroot/usr/share/applications
 
 # install the core files
 cd %buildroot
@@ -100,6 +100,9 @@ fi
 #rm -rf %buildroot/usr/local/stata11
 
 %changelog
+* Mon Dec  7 2009 Lars Vilhuber <lars.vilhuber@cornell.edu> - 11.0-2
+- Moved desktop files to compliant /usr/share/applications location
+
 
 * Thu Aug 30 2007 Lars Vilhuber <lars.vilhuber@cornell.edu> - 9.0-1
 - Updated spec file to Stata 11
@@ -144,9 +147,9 @@ fi
 
 %files desktop
 %defattr(0755,root,root,0755)
-/opt/kde3/share/applications/Stata11.desktop
-/opt/kde3/share/applications/Stata11-MP.desktop
-/opt/kde3/share/applications/Stata11-SE.desktop
+/usr/share/applications/Stata11.desktop
+/usr/share/applications/Stata11-MP.desktop
+/usr/share/applications/Stata11-SE.desktop
 /usr/local/stata11/stata11.png
 
 %files mkdefault

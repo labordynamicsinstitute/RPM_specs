@@ -4,7 +4,7 @@ Group: Applications/Statistics
 Summary: SAS 9.2 
 Packager: Lars Vilhuber
 Version: 9.2
-Release: 4
+Release: 5
 Source0: sasv9_local.cfg
 Source1: SAS92-desktop.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-build 
@@ -45,7 +45,7 @@ touch %buildroot/usr/local/bin/sas
 
 
 # install the desktop stuff 
-install -d %buildroot/opt/kde3/share/applications
+install -d %buildroot/usr/share/applications/vrdc
 cd %buildroot
 tar xf %{SOURCE1}
 
@@ -76,7 +76,7 @@ rm -f /usr/local/bin/sas
 
 %files desktop
 %defattr(755,root,root)
-/opt/kde3/share/applications/SAS92.desktop
+/usr/share/applications/vrdc/SAS92.desktop
 
 %files mkdefault
 %defattr(755,root,root)
@@ -85,6 +85,9 @@ rm -f /usr/local/bin/sas
 
 
 %changelog
+* Mon Dec  7 2009 Lars Vilhuber <lars.vilhuber@cornell.edu> - 9.2-5
+- Moved the desktop files to compliant location in /usr/share/applications/
+
 * Tue Feb 10 2009 Lars Vilhuber <lars.vilhuber@cornell.edu> - 9.2-1
 - For 9.2, removed the actual installed files (too big)
 
