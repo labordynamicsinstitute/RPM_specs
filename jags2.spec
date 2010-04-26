@@ -8,15 +8,34 @@ License: GPLv2
 Group: Applications/Engineering
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
+# Build requirements: compilers
 BuildRequires: gcc-c++
+# Suse specific requirements
 %if %{_vendor} == "suse"
 BuildRequires:  blas, lapack 
+# For higher SUSE versions
+# libraries
 %if %{suse_version} >= 1100
 BuildRequires: gcc-fortran, liblapack3, libblas3
-%else
+%endif 
+# end SUSE >= 1100
+%if %{suse_version} < 1100
 BuildRequires: gcc-g77, libtool
 %endif
+# end else condition 
+# Start ltdl conditions
+%if %{suse_version} >= 1120
+BuildRequires: libltdl7
+%else 
+%if %{suse_version} >= 1100
+BuildRequires: libltdl-3
 %else
+BuildRequires: libtool
+%endif # end of else condition to 1100
+%endif # end of else condition to 1120
+# end of suse condition
+%else 
+# applies to RHEL systems
 BuildRequires: gcc-gfortran, lapack-devel, blas-devel, libtool-ltdl-devel
 %endif
 
