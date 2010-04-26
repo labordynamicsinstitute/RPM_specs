@@ -1,13 +1,24 @@
 Name: jags
-Version: 1.0.3
-Release: 1%{?dist}
+Version: 1.0.4
+Release: 2%{?dist}
 Summary: Just Another Gibbs Sampler
 URL: http://mcmc-jags.sourceforge.net
 Source0: http://mcmc-jags.sourceforge.net/JAGS-%{version}.tar.gz
 License: GPLv2
 Group: Applications/Engineering
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-BuildRequires: gcc-gfortran, gcc-c++, lapack-devel, blas-devel
+
+BuildRequires: gcc-c++
+%if %{_vendor} == "suse"
+BuildRequires:  blas, lapack 
+%if %{suse_version} >= 1100
+BuildRequires: gcc-fortran, liblapack3, libblas3
+%else
+BuildRequires: gcc-g77
+%endif
+%else
+BuildRequires: gcc-gfortran, lapack-devel, blas-devel
+%endif
 
 %description
 JAGS (Just Another Gibbs Sampler) is a program for the analysis of
@@ -22,7 +33,16 @@ dialect of the BUGS language to describe Bayesian hierarchical models.
 Summary: JAGS development libraries
 Group: Applications/Engineering
 Requires: jags  = %{version}
+%if %{_vendor} == "suse"
+%if %{suse_version} >= 1100
+Requires: gcc-fortran, gcc-c++
+%else
+Requires: gcc-c++, gcc-g77
+%endif
+%else
 Requires: gcc-c++, gcc-gfortran
+%endif
+
 %description devel
 
 JAGS headers and libraries. Install jags-devel if you are going to 
@@ -32,7 +52,15 @@ of JAGS by developing/installing JAGS modules.
 %prep 
 %setup -q -n JAGS-%{version}
 
-export F77=gfortran
+%if %{_vendor} == "suse"
+ %if %{suse_version} >= 1100
+   export F77=gfortran
+  %else
+export F77=g77
+  %endif
+ %else
+ export F77=gfortran
+%endif
 %configure 
 make 
 
@@ -66,6 +94,10 @@ rm -rf ${RPM_BUILD_ROOT};
 /sbin/ldconfig
 
 %changelog
+* Thu Feb 5 2009 Lars Vilhuber <virtualrdc@cornell.edu> 1.0.3-2
+- Adapted to openSUSE build service
+- Adjusted for building on SUSE systems (different Requires and BuildRequires)
+
 * Thu Jul 17 2008 Martyn Plummer <martyn_plummer@sourceforge.net> 1.0.3-1
 - Built JAGS 1.0.3
 
