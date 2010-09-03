@@ -4,6 +4,8 @@ Version: 1
 Release: 0
 License: free
 Group: System
+BuildArch: noarch
+
 #Source0: %{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: vrdc-ssg-directories

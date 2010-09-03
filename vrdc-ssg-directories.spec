@@ -5,6 +5,7 @@ Release: 0
 License: free
 Group: System
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildArch: noarch
 
 %description
 Puts the VirtualRDC directories onto the SSG.
