@@ -1,12 +1,12 @@
 # adjust this upon updates
 #boot  class cluster codetools foreign KernSmooth lattice MASS Matrix  mgcv nlme nnet rpart spatial survival  norm
-%define packages abind acepack akima bayesm  car chron  coda    corpcor   DBI  degreenet  delt  denpro  Design   dynamicGraph entropy  ergm  fBasics  fdrtool  feature   gam  GenKern  geoR  ggm   hexbin Hmisc  impute  kernlab ks  latentnet leaps lme4  logspline lpSolve mapproj  maps  maptools  maptree   Matching mclust    MEMSS  mitools misc3d  MKLE  mlmRev  mvtnorm  network  networksis  np  numDeriv  nws  plugdensity  plyr quantreg  R2WinBUGS  RandomFields  randomForest  RArcInfo  rbugs  RColorBrewer   reshape  rgenoud  rgl  Rglpk   rlecuyer  robustbase   rpanel    RSQLite  RUnit  rv sampling samr  SASxport  scatterplot3d  sda  sgeostat  shapes  sm  sna  snow  sp  SparseM  splancs st  statmod  statnet survey   TeachingDemos  timeDate  timeSeries  tkrplot  tree  tripack  tweedie  Umacs  arm 
+%define packages biglm bigmemory bigtabulate synchronicity biganalytics abind acepack akima bayesm  car chron  coda    corpcor   DBI  degreenet  delt  denpro  Design   dynamicGraph entropy  ergm  fBasics  fdrtool  feature   gam  GenKern  geoR  ggm   hexbin Hmisc  impute  kernlab ks  latentnet leaps lme4  logspline lpSolve mapproj  maps  maptools  maptree   Matching mclust    MEMSS  mitools misc3d  MKLE  mlmRev  mvtnorm  network  networksis  np  numDeriv  nws  plugdensity  plyr quantreg  R2WinBUGS  RandomFields  randomForest  RArcInfo  rbugs  RColorBrewer   reshape  rgenoud  rgl  Rglpk   rlecuyer  robustbase   rpanel    RSQLite  RUnit  rv sampling samr  SASxport  scatterplot3d  sda  sgeostat  shapes  sm  sna  snow  sp  SparseM  splancs st  statmod  statnet survey   TeachingDemos  timeDate  timeSeries  tkrplot  tree  tripack  tweedie  Umacs  arm 
 #tcltk2 
 #RODBC RMySQL
 # The R version should correspond to the R package being installed.
 # it will be transformed into an explicit dependency
 
-%define Rversion 2.9.2 
+%define Rversion 2.11.1 
 
 Name: R-packages-special
 License: GPL
@@ -14,7 +14,7 @@ Group: Application/Statistics
 Summary: R packages for (V)RDC and Hurricane
 Packager: Lars Vilhuber <lars.vilhuber@cornell.edu>
 Version: %{Rversion}
-Release: 2
+Release: 0
 BuildRoot: %{_tmppath}/%{name}-%{version}-build 
 BuildRequires: R-base >= %{Rversion} 
 
