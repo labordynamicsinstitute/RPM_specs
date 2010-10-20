@@ -6,7 +6,7 @@
 # The R version should correspond to the R package being installed.
 # it will be transformed into an explicit dependency
 
-%define Rversion 2.11.1 
+%define Rversion 2.12.0 
 
 Name: R-packages-special
 License: GPL

@@ -9,7 +9,7 @@
 %define prefix /usr
 
 Name: R-base
-%define version 2.11.1
+%define version 2.12.0
 %define release 1 
 
 Version: %version
