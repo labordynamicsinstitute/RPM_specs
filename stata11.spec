@@ -4,7 +4,7 @@ Group: Application/Statistics
 Summary: Stata 11 (standard) from Stata.com 
 Packager: Lars Vilhuber <lars.vilhuber@cornell.edu>
 Version: 11.0 
-Release: 2 
+Release: 3 
 BuildRoot: %{_tmppath}/%{name}-%{version}-build 
 Source0: stata11-%{_arch}.tgz 
 Source1: stata11-desktop.tgz

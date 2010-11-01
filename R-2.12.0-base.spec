@@ -7,11 +7,10 @@
 %define _missing_doc_files_terminate_build 0
 
 %define prefix /usr
-
-Name: R-base
 %define version 2.12.0
 %define release 1 
 
+Name: R-base
 Version: %version
 Release: %release
 Source: http://cran.r-project.org/src/base/R-2/R-%version.tar.gz
@@ -20,7 +19,14 @@ URL:  http://www.r-project.org/
 Group: Productivity/Science/Math
 PreReq: perl, ed
 Summary: R - statistics package (S-Plus like)
-BuildRoot: /var/tmp/%{name}-root
+%description 
+
+R is a language which is not entirely unlike the S language developed at
+AT&T Bell Laboratories by Rick Becker, John Chambers and Allan Wilks. 
+Indeed in the (present) absence of an R manual, you can (mostly) get along
+by using the S manual. 
+
+#BuildRoot: /var/tmp/%{name}-root
 BuildRequires: ed, gcc, gcc-c++
 %if %suse_version >=1000
 BuildRequires: gcc-fortran
@@ -48,13 +54,6 @@ BuildRequires: texinfo, tcl-devel, tk-devel
 Requires: libpng, libjpeg, readline
 Requires: blas
 AutoReqProv: Yes
-
-%description
-
-R is a language which is not entirely unlike the S language developed at
-AT&T Bell Laboratories by Rick Becker, John Chambers and Allan Wilks. 
-Indeed in the (present) absence of an R manual, you can (mostly) get along
-by using the S manual. 
 
 %prep 
 %setup -n R-%{version}
