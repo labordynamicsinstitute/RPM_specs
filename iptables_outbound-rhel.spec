@@ -21,10 +21,11 @@ cd iptables_out
 tar xvzf %{SOURCE0}
 
 %install
+cd iptables_out
 %__install -m 755 -d  "%{buildroot}/etc/sysconfig"
 %__install -m 755 -d  "%{buildroot}/etc/init.d"
 %__install -m 755 "./etc/init.d/iptables_out" "%{buildroot}/etc/init.d/iptables_out"
-%__install -m 700 "./etc/sysconfig/iptables_out" "%{buildroot}/etc/sysconfig/iptables_out"
+%__install -m 600 "./etc/sysconfig/iptables_out" "%{buildroot}/etc/sysconfig/iptables_out"
 
 
 %clean
@@ -34,7 +35,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-,root,root,-)
 %doc
-%config %attr(700,-,-) /etc/sysconfig/iptables_out
+%config %attr(700,root,root) /etc/sysconfig/iptables_out
 /etc/init.d/iptables_out
 
 %changelog
