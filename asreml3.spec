@@ -1,162 +1,53 @@
-Name: stata11
+Name: asreml
 License: Commercial
 Group: Application/Statistics
-Summary: Stata 11 (standard) from Stata.com 
+Summary: ASReml is a stastical program for mixed model analysis
 Packager: Lars Vilhuber <lars.vilhuber@cornell.edu>
-Version: 11.0 
-Release: 3 
+Version: 1.10
+Release: 1
+Source0: ASREML110.ia64.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-build 
-Source0: stata11-%{_arch}.tgz 
-Source1: stata11-desktop.tgz
+BuildArch: ia64
 
 %description
-Installs Stata 11 base files. You will need one of -std, -se, and/or -mp,
-depending on your license.
+ASReml Features
 
-You still need to install the license. You can install the license (as root) by 
+The main features of AS Reml include:
 
-cd /usr/local/stata11
-./stinit
+    * Uniquely efficient and fast algorithms for mixed model analysis, saving you considerable time and effort.
+    * Handles large data sets (of 100,000 or more observations/effects).
+    * Allows for direct fitting of cubic smoothing splines (Verbyla et al, 1999), with user-specified knot points.
+    * Facilitates multi-environment trials for the analysis of plant or crop improvement data.
+    * Analyses univariate and multivariate breeding and genetics data.
+    * Supports a wide range of variance models for spatial analysis.
+    * Encourages innovative modelling of longitudinal data. 
 
-%package std
-Group: Application/Statistics
-Summary: Standard version of Stata 
-Requires: stata11 >= 11.0
-%description std
-Standard binaries for Stata.
+AS Reml has already been successfully applied to:
 
-%package se
-Group: Application/Statistics
-Summary: SE version of Stata 
-Requires: stata11 >= 11.0
-%description se
-SE binaries for Stata.
-
-%package mp
-Group: Application/Statistics
-Summary: MP version of Stata 
-Requires: stata11 >= 11.0
-%description mp
-MP binaries for Stata.
-
-%package desktop
-Group: Application/Statistics
-Summary: Desktop integration for Stata 
-Requires: stata11 >= 11.0
-%description desktop
-Creates links and desktop icons for Stata 11
-
-%package mkdefault
-Group: Application/Statistics
-Summary: Make Stata 11 the default
-Requires: stata11 >= 11.0
-
-%description mkdefault
-Creates links for Stata 11
-
+    * Animal and plant breeding and agricultural experimentation
+    * Environmental sciences
+    * Medical research 
 %prep
 
 %build
 
 %install
-# install the desktop files
-tar xzf %{SOURCE1}
-# install the desktop stuff 
-install -d %buildroot/usr/share/applications
-install Stata11.desktop %buildroot/usr/share/applications
-install Stata11-SE.desktop %buildroot/usr/share/applications
-install Stata11-MP.desktop %buildroot/usr/share/applications
-
-# install the core files
 cd %buildroot
-install -d %buildroot/usr/local/bin
-tar xzvf %{SOURCE0}  
-[[ -f usr/local/stata11/stata.lic ]] && \rm -f usr/local/stata11/stata.lic
-ln -sf ../stata11/stata %buildroot/usr/local/bin/stata11
-ln -sf ../stata11/xstata %buildroot/usr/local/bin/xstata11
-ln -sf ../stata11/stata-se %buildroot/usr/local/bin/stata11-se
-ln -sf ../stata11/xstata-se %buildroot/usr/local/bin/xstata11-se
-ln -sf ../stata11/stata-mp %buildroot/usr/local/bin/stata11-mp
-ln -sf ../stata11/xstata-mp %buildroot/usr/local/bin/xstata11-mp
-
-# install the default stuff 
+install -d -m 755 -g root -o root %buildroot/usr/local/bin
 cd %buildroot/usr/local/bin
-ln -sf stata11 stata
-ln -sf stata11-se stata-se
-ln -sf stata11-mp stata-mp
-ln -sf xstata11 xstata
-ln -sf xstata11-se xstata-se
-ln -sf xstata11-mp xstata-mp
-
-#------------------------------------------------
-# after uninstalling, clean up any leftover files
-#------------------------------------------------
-%postun
-if [ "$1" = "0" ]; then
-	rm -rf /usr/local/stata11
-fi
+tar xzf %{SOURCE0}
+chmod 0755  %buildroot/usr/local/bin/ASREML110
+chmod 0755  %buildroot/usr/local/bin/asreml
 
 %clean
-#rm -rf %buildroot/usr/local/stata11
-
-%changelog
-* Mon Dec  7 2009 Lars Vilhuber <lars.vilhuber@cornell.edu> - 11.0-2
-- Moved desktop files to compliant /usr/share/applications location
-
-
-* Thu Aug 30 2007 Lars Vilhuber <lars.vilhuber@cornell.edu> - 9.0-1
-- Updated spec file to Stata 11
 
 %files
-%defattr(0755,root,root,0755)
-/usr/local/stata11/ado/
-/usr/local/stata11/auto.dta
-/usr/local/stata11/isstata.110
-/usr/local/stata11/installed.110
-/usr/local/stata11/stinit
-/usr/local/stata11/stata_br
-/usr/local/stata11/stata_pdf
-/usr/local/stata11/utilities
-%attr(770,root,root) /usr/local/stata11/inst2
-%attr(770,root,root) /usr/local/stata11/setrwxp
-
-%config
-/usr/local/stata11/stata.msg
+/usr/local/bin/ASREML110
+/usr/local/bin/asreml
 
 
-%files std
-%defattr(0755,root,root,0755)
-/usr/local/bin/stata11
-/usr/local/bin/xstata11
-/usr/local/stata11/stata
-/usr/local/stata11/xstata
-
-%files se
-%defattr(0755,root,root,0755)
-/usr/local/bin/stata11-se
-/usr/local/bin/xstata11-se
-/usr/local/stata11/stata-se
-/usr/local/stata11/xstata-se
-
-%files mp
-%defattr(0755,root,root,0755)
-/usr/local/stata11/stata-mp
-/usr/local/stata11/xstata-mp
-/usr/local/bin/stata11-mp
-/usr/local/bin/xstata11-mp
-
-%files desktop
-%defattr(0755,root,root,0755)
-/usr/share/applications/Stata11.desktop
-/usr/share/applications/Stata11-MP.desktop
-/usr/share/applications/Stata11-SE.desktop
-/usr/local/stata11/stata11.png
-
-%files mkdefault
-%defattr(755,root,root)
-/usr/local/bin/stata
-/usr/local/bin/stata-se
-/usr/local/bin/stata-mp
-/usr/local/bin/xstata
-/usr/local/bin/xstata-se
-/usr/local/bin/xstata-mp
+%changelog
+* Wed Jan 4 2006 vilhuber@lservices
+- introduced script to set license path
+* Wed Mar 30 2005 vilhuber@lservices
+- Initial RPM
