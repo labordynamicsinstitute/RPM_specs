@@ -33,18 +33,17 @@ AS Reml has already been successfully applied to:
 %build
 
 %install
-rm -rf $RPM_BUILD_ROOT
 # directories 
-install -d $RPM_BUILD_ROOT/usr/local/bin
-install -d $RPM_BUILD_ROOT/opt/asreml3
-cd $RPM_BUILD_ROOT/opt/asreml3
+install -d %buildroot/usr/local/bin
+install -d %buildroot/opt/asreml3
+cd %buildroot/opt/asreml3
 tar xzvf %{SOURCE0}
 cd bin
 mv asreml.sh asreml.tmp
 sed 's+/usr/local/asreml3+/opt/asreml3+' asreml.tmp > asreml.sh
 chmod a+rx asreml.sh
 rm asreml.tmp
-cd $RPM_BUILD_ROOT/usr/local/bin
+cd %buildroot/usr/local/bin
 ln -s ../../../opt/asreml3/bin/asreml.sh  asreml
 
 %clean
