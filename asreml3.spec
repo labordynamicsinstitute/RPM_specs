@@ -59,5 +59,5 @@ ln -s ../../../opt/asreml3/bin/asreml.sh  asreml
 
 
 %changelog
-* Mon Aug 29, 2011 lars.vilhuber@cornell.edu
+* Mon Aug 29 2011 lars.vilhuber@cornell.edu
 - Initial RPM
