@@ -9,6 +9,8 @@ Source0: asreml-3.0gm-linux-64.tar.gz
 Source1: asreml_3.0.1_R_gl-centos5.5-intel64.tar.gz
 Source2: linux64-install.txt
 Source3: install-asreml-R.pdf
+BuildRoot:      %{_tmppath}/%{name}-%{version}-build
+
 
 %description
 ASReml Features
