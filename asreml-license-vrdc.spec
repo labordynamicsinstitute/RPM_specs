@@ -1,4 +1,4 @@
-Name: asreml-license-ciser
+Name: asreml3-license-vrdc
 License: Commercial
 Group: Application/Statistics
 Summary: ASReml license from vsn-int.com for VRDC
