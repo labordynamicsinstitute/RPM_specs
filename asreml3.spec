@@ -111,6 +111,7 @@ R CMD REMOVE asreml
 %doc install-asreml-R.pdf
 
 %files R
+%defattr(-,root,root,-)
 %doc removing-R.txt
 %doc installing-R.txt
 
