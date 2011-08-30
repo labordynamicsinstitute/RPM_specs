@@ -79,7 +79,7 @@ install %{SOURCE4} %buildroot/opt/asreml3/examples
 cd bin
 mv asreml.sh asreml.tmp
 sed 's+/usr/local/asreml3+/opt/asreml3+
-    s+arch=32+#arch=32+
+    s+^arch=32+#arch=32+
     s+#arch=64+arch=64+' asreml.tmp > asreml.sh
 chmod a+rx asreml.sh
 rm asreml.tmp
