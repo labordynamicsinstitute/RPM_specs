@@ -70,6 +70,9 @@ echo "R CMD REMOVE asreml" > removing-R.txt
 # unpack the binary sources
 cd %buildroot/opt/asreml3
 tar xzvf %{SOURCE0}
+# hard-coded to arch=x86_64
+rm bin/asreml-3.0gm-32
+
 # add an example
 install %{SOURCE4} %buildroot/opt/asreml3/examples
 # adjust the path of the shell
