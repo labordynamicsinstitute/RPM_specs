@@ -97,10 +97,12 @@ install %{SOURCE5} %buildroot/etc/profile.d/
 
 %post R
 # do the R install. Assumes that R is installed
-R CMD INSTALL /opt/asreml3/sources/%rpackage
+rbin=`which R`
+[[ -z $rbin ]] || R CMD INSTALL /opt/asreml3/sources/%rpackage
 
 %postun R
-R CMD REMOVE asreml
+rbin=`which R`
+[[ -z $rbin ]] || R CMD REMOVE asreml
 
 %files
 %defattr(-,root,root,-)
