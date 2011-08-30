@@ -33,6 +33,8 @@ AS Reml has already been successfully applied to:
 %prep
 
 %build
+cp %{SOURCE2} .
+cp %{SOURCE3} .
 
 %install
 # directories 
