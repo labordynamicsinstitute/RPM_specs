@@ -28,5 +28,5 @@ install  %{SOURCE0} %buildroot/opt/asreml3/bin
 /opt/asreml3/bin/asreml.lic
 
 %changelog
-* Aug 29 2011 lars.vilhuber@cornell.edu
+* Mon Aug 29 2011 lars.vilhuber@cornell.edu
   - Modification for ASReml3
