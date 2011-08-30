@@ -9,6 +9,9 @@ Source0: asreml-3.0gm-linux-64.tar.gz
 Source1: asreml_3.0.1_R_gl-centos5.5-intel64.tar.gz
 Source2: linux64-install.txt
 Source3: install-asreml-R.pdf
+Source4: oats.R
+Source5: asreml-profile.sh
+
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 
@@ -40,15 +43,23 @@ cp %{SOURCE3} .
 # directories 
 install -d %buildroot/usr/local/bin
 install -d %buildroot/opt/asreml3
+install -d %buildroot/etc/profile.d
 cd %buildroot/opt/asreml3
 tar xzvf %{SOURCE0}
+# add an example
+install %{SOURCE4} %buildroot/opt/asreml3/examples
+# adjust the path of the shell
 cd bin
 mv asreml.sh asreml.tmp
 sed 's+/usr/local/asreml3+/opt/asreml3+' asreml.tmp > asreml.sh
 chmod a+rx asreml.sh
 rm asreml.tmp
+# add the symbolic link
 cd %buildroot/usr/local/bin
 ln -s ../../../opt/asreml3/bin/asreml.sh  asreml
+# add the profile update that points other apps, like the r-asreml
+# package, to the license file
+install %{SOURCE5} %buildroot/etc/profile.d/
 
 %clean
 
@@ -56,11 +67,14 @@ ln -s ../../../opt/asreml3/bin/asreml.sh  asreml
 %defattr(-,root,root,-)
 /usr/local/bin/asreml
 /opt/asreml3
+/etc/profile.d/asreml-profile.sh
 %doc linux64-install.txt
 %doc install-asreml-R.pdf
 
 
 
 %changelog
+* Tue Aug 30 2011 lars.vilhuber@cornell.edu
+  - Added the profile adjustment and a R example
 * Mon Aug 29 2011 lars.vilhuber@cornell.edu
 - Initial RPM

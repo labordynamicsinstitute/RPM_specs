@@ -14,6 +14,7 @@ This is the ASReml license for VRDC (network license).
 %prep
 
 %build
+mkdir -p %buildroot
 
 %install
 cd %buildroot
