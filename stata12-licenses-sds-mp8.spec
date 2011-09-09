@@ -5,7 +5,7 @@ Summary: Stata 12 license (5-user 8-core Stata network perpetual license) for SS
 Packager: Lars Vilhuber <lars.vilhuber@cornell.edu>
 Version: 12.0
 Release: 0 
-Requires: stata12 >= 12.0 stata12-se stata12-std stata12-mp
+Requires: stata12 >= 12.0 
 Source0: stata12-ssg-licenses.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-build 
 BuildArch: noarch
