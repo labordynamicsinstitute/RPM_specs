@@ -3,10 +3,10 @@ License: Commercial
 Group: Application/Statistics
 Summary: Stata 10 (standard) from Stata.com 
 Packager: Lars Vilhuber <lars.vilhuber@cornell.edu>
-Version: 10.0 
-Release: 2 
+Version: 10.1 
+Release: 3 
 BuildRoot: %{_tmppath}/%{name}-%{version}-build 
-Source0: stata10-ia64.tgz 
+Source0: stata10-installed.20101112.tgz
 Source1: stata10-desktop.tgz
 
 %description

@@ -1,14 +1,11 @@
 # adjust this upon updates
-#boot  class cluster codetools foreign KernSmooth lattice MASS Matrix  mgcv nlme nnet rpart spatial survival  norm
-%define packages biglm bigalgebra bigmemory bigtabulate synchronicity biganalytics abind acepack akima bayesm  car chron  coda    corpcor   DBI  degreenet  delt  denpro  Design   dynamicGraph entropy  ergm  fBasics  fdrtool  feature   gam  GenKern  geoR  ggm   hexbin Hmisc  impute  kernlab ks  latentnet leaps lme4  logspline lpSolve mapproj  maps  maptools  maptree   Matching mclust    MEMSS  mitools misc3d  MKLE  mlmRev  mvtnorm  network  networksis  np  numDeriv  nws  plugdensity  plyr quantreg  R2WinBUGS  RandomFields  randomForest  RArcInfo  rbugs  RColorBrewer   reshape  rgenoud  rgl  Rglpk   rlecuyer  robustbase   rpanel    RSQLite  RUnit  rv sampling samr  SASxport  scatterplot3d  sda  sgeostat  shapes  sm  sna  snow  sp  SparseM  speedglm splancs st  statmod  statnet survey   TeachingDemos  timeDate  timeSeries  tkrplot  tree  tripack  tweedie  Umacs  arm 
-#tcltk2 
-#RODBC RMySQL
+%define views Bayesian
 # The R version should correspond to the R package being installed.
 # it will be transformed into an explicit dependency
 
-%define Rversion 2.11.1 
+%define Rversion 2.13.2 
 
-Name: R-packages-special
+Name: R-packages-special-views
 License: GPL
 Group: Application/Statistics
 Summary: R packages for (V)RDC and Hurricane
@@ -42,9 +39,9 @@ Requires: R-base >= %{Rversion}
 # Update with the relevant packages. So far not automated.
 
 %description
-Installs R packages. Currently contains
+Installs R views. Currently contains
 
-%{packages}
+%{views}
 
 Note that it is premised on the R package from CRAN (for RHEL5). Mileage with
 different R packages (f.i. from EPEL) may vary.
@@ -59,13 +56,14 @@ mkdir -p -m 777 %buildroot/usr/%archlib/R/library/
 rm -rf %buildroot/usr/%archlib/R/library/*
 pwd
 echo "%buildroot" 
-for pkg in %{packages}
+for pkg in %{views}
 do
 [[ -z $pkgs ]] && pkgs="'$pkg'" || pkgs="$pkgs , '$pkg'"
 done
 cat > install.R <<EOF
 pkgs <- c($pkgs)
-install.packages(pkgs, contriburl='http://cran.r-project.org/src/contrib', lib='%buildroot/usr/%archlib/R/library/') 
+library("ctv")
+install.views(pkgs, repos="http://lib.stat.cmu.edu/R/CRAN/", lib='%buildroot/usr/%archlib/R/library/') 
 EOF
 R --vanilla < install.R
 

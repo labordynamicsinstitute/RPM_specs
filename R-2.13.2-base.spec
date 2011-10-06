@@ -7,11 +7,10 @@
 %define _missing_doc_files_terminate_build 0
 
 %define prefix /usr
-
-Name: R-base
-%define version 2.9.2
+%define version 2.13.2
 %define release 1 
 
+Name: R-base
 Version: %version
 Release: %release
 Source: http://cran.r-project.org/src/base/R-2/R-%version.tar.gz
@@ -19,8 +18,16 @@ License: GPL
 URL:  http://www.r-project.org/
 Group: Productivity/Science/Math
 PreReq: perl, ed
+Buildroot:    %{_tmppath}/%{name}-%{version}-build
 Summary: R - statistics package (S-Plus like)
-BuildRoot: /var/tmp/%{name}-root
+%description 
+
+R is a language which is not entirely unlike the S language developed at
+AT&T Bell Laboratories by Rick Becker, John Chambers and Allan Wilks. 
+Indeed in the (present) absence of an R manual, you can (mostly) get along
+by using the S manual. 
+
+#BuildRoot: /var/tmp/%{name}-root
 BuildRequires: ed, gcc, gcc-c++
 %if %suse_version >=1000
 BuildRequires: gcc-fortran
@@ -48,13 +55,6 @@ BuildRequires: texinfo, tcl-devel, tk-devel
 Requires: libpng, libjpeg, readline
 Requires: blas
 AutoReqProv: Yes
-
-%description
-
-R is a language which is not entirely unlike the S language developed at
-AT&T Bell Laboratories by Rick Becker, John Chambers and Allan Wilks. 
-Indeed in the (present) absence of an R manual, you can (mostly) get along
-by using the S manual. 
 
 %prep 
 %setup -n R-%{version}
@@ -84,13 +84,12 @@ TEXINPUTS="" BIBINPUTS="" make pdf
 TEXINPUTS="" BIBINPUTS="" make check
 
 %install -n R-%{version}
-rm -rf $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT%prefix/bin
-mkdir -p $RPM_BUILD_ROOT%prefix/%{ILD}
-mkdir -p $RPM_BUILD_ROOT%prefix/%{ILD}/R/doc
-mkdir -p $RPM_BUILD_ROOT%prefix/%{ILD}/R/doc/manual
-mkdir -p $RPM_BUILD_ROOT%prefix/share/info
-mkdir -p $RPM_BUILD_ROOT%prefix/share/man/man1
+install -d $RPM_BUILD_ROOT%prefix/bin
+install -d $RPM_BUILD_ROOT%prefix/%{ILD}
+install -d $RPM_BUILD_ROOT%prefix/%{ILD}/R/doc
+install -d $RPM_BUILD_ROOT%prefix/%{ILD}/R/doc/manual
+install -d $RPM_BUILD_ROOT%prefix/share/info
+install -d $RPM_BUILD_ROOT%prefix/share/man/man1
 
 # install info files:
 #cp doc/manual/*.info* $RPM_BUILD_ROOT%prefix/share/info
@@ -98,7 +97,7 @@ mkdir -p $RPM_BUILD_ROOT%prefix/share/man/man1
 
 # install pdf files:
 for i in doc/manual/*.pdf; do
-  cp $i $RPM_BUILD_ROOT%prefix/%{ILD}/R/doc/manual
+  install $i %{buildroot}%prefix/%{ILD}/R/doc/manual
 done
 
 # install binary distribution:
@@ -157,9 +156,9 @@ rm -rf $RPM_BUILD_ROOT
 %{prefix}/%{ILD}/pkgconfig/libR.pc
 %{prefix}/%{ILD}/R/bin/
 %{prefix}/%{ILD}/R/share/
-%doc %{prefix}/%{ILD}/R/doc/
 %{prefix}/%{ILD}/R/etc/
 %{prefix}/%{ILD}/R/include/
 %{prefix}/%{ILD}/R/lib/
 %{prefix}/%{ILD}/R/library/
 %{prefix}/%{ILD}/R/modules/
+%doc %{prefix}/%{ILD}/R/doc/
