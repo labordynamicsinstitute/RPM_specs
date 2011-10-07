@@ -1,5 +1,5 @@
 # adjust this upon updates
-%define views Bayesian
+%define views Bayesian Cluster Distributions Econometrics Genetics Graphics  gR HighPerformanceComputing MachineLearning Multivariate OfficialStatistics Robust SocialSciences Spatial Survival TimeSeries
 # The R version should correspond to the R package being installed.
 # it will be transformed into an explicit dependency
 
