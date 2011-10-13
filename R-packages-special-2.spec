@@ -1,3 +1,5 @@
+# Adjust this to your liking
+%define CRANHOST http://localhost/src/contrib
 # adjust this upon updates
 #boot  class cluster codetools foreign KernSmooth lattice MASS Matrix  mgcv nlme nnet rpart spatial survival  norm
 %define packages biglm bigalgebra bigmemory bigtabulate synchronicity biganalytics abind acepack akima bayesm  car chron  coda    corpcor   DBI  degreenet  delt  denpro  Design   dynamicGraph entropy  ergm  fBasics  fdrtool  feature   gam  GenKern  geoR  ggm   hexbin Hmisc  impute  kernlab ks  latentnet leaps lme4  logspline lpSolve mapproj  maps  maptools  maptree   Matching mclust    MEMSS  mitools misc3d  MKLE  mlmRev  mvtnorm  network  networksis  np  numDeriv  nws  plugdensity  plyr quantreg  R2WinBUGS  RandomFields  randomForest  RArcInfo  rbugs  RColorBrewer   reshape  rgenoud  rgl  Rglpk   rlecuyer  robustbase   rpanel    RSQLite  RUnit  rv sampling samr  SASxport  scatterplot3d  sda  sgeostat  shapes  sm  sna  snow  sp  SparseM  speedglm splancs st  statmod  statnet survey   TeachingDemos  timeDate  timeSeries  tkrplot  tree  tripack  tweedie  Umacs  arm inline reshape plyr stringr igraph network iterators foreach itertools multicore doMC profr rbenchmark survey MCMCpack coda mvpart mice RecordLinkage glmnet spBayes bart
@@ -9,7 +11,7 @@
 Name: R-packages-special
 License: GPL
 Group: Application/Statistics
-Summary: R packages for (V)RDC and Hurricane
+Summary: R packages for VRDC6401 and NSF01
 Packager: Lars Vilhuber <lars.vilhuber@cornell.edu>
 Version: %{Rversion}
 Release: 0
@@ -63,7 +65,7 @@ do
 done
 cat > install.R <<EOF
 pkgs <- c($pkgs)
-install.packages(pkgs, contriburl='http://cran.r-project.org/src/contrib', lib='%buildroot/usr/%archlib/R/library/') 
+install.packages(pkgs, contriburl='%{CRANHOST}', lib='%buildroot/usr/%archlib/R/library/') 
 EOF
 R --vanilla < install.R
 
