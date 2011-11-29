@@ -1,4 +1,7 @@
-%define updatever 20110901
+%define updatever 20111129
+# maintenance of stata:
+# on an installed system, run 'update all'
+# then tar czf /usr/src/redhat/SOURCES/stata12-linux-%updatevar.tgz /usr/local/stata12
 
 Name: stata12
 License: Commercial
@@ -6,7 +9,7 @@ Group: Application/Statistics
 Summary: Stata 12 (standard) from Stata.com 
 Packager: Lars Vilhuber <lars.vilhuber@cornell.edu>
 Version: 12.0 
-Release: 3 
+Release: %{updatever} 
 BuildRoot: %{_tmppath}/%{name}-%{version}-build 
 Source0: stata12-linux-%{updatever}.tgz 
 Source1: stata12-desktop.tgz

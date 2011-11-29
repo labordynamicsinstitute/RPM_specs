@@ -1,18 +1,20 @@
+%define __jar_repack 0
+%define __os_install_post %{nil}
 Name: smartsvn
 License: Commercial
 Group: Development/Tools/Version Control
 Summary: Multi-platform client for Subversionexternal link
 URL    : http://smartcvs.com/smartsvn/index.html
 Packager: Lars Vilhuber <lars.vilhuber@cornell.edu>
-Version: 6.5.6
+Version: 6.6.10
 # adjust to match the version above
-%define _version 6_5_6
+%define _version 6_6_10
 Release: 1
 Source0: smartsvn-generic-%{_version}.tar.gz
 Source1: smartsvn-extra.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-build 
 BuildArch: noarch
-Requires: jre-sun >= 1.6
+Requires: jre >= 1.6
 
 
 %description
