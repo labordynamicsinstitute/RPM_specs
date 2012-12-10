@@ -1,7 +1,7 @@
-%define updatever 20111129
+%define updatever 20121022
 # maintenance of stata:
 # on an installed system, run 'update all'
-# then tar czf /usr/src/redhat/SOURCES/stata12-linux-%updatevar.tgz /usr/local/stata12
+# then tar czf /usr/src/redhat/SOURCES/stata12-linux-$updatevar.tgz /usr/local/stata12
 
 Name: stata12
 License: Commercial
@@ -157,6 +157,7 @@ fi
 
 %config
 /usr/local/stata12/stata.msg
+/usr/local/stata12/profile.do
 
 %files libgtksourceview
 /usr/lib64/libgtksourceview-1.0.so.0
