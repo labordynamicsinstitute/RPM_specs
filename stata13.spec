@@ -1,4 +1,4 @@
-%define updatever 20130919
+%define updatever 20140211
 # maintenance of stata:
 # on an installed system, run 'update all'
 # then tar czf /usr/src/redhat/SOURCES/stata13-linux-$updatevar.tgz /usr/local/stata13
