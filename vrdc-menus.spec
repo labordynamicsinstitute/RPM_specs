@@ -4,8 +4,9 @@ Group: Applications/Statistical
 Summary: Creates a Statistics submenu, and the structure in /usr/share/applications to store VRDC-specific apps
 Packager: Lars Vilhuber <lars.vilhuber@cornell.edu>
 Version: 1
-Release: 0 
+Release: 2 
 Source0: vrdc-menus.tgz
+Source1: vrdc-menus-super.tgz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch: noarch
 
@@ -21,7 +22,9 @@ install -d -m 755 %buildroot/etc/xdg/menus/applications-merged/
 install -d -m 755 %buildroot/usr/share/applications/vrdc/
 install -d -m 755 %buildroot/usr/share/desktop-directories/
 cd %buildroot
+tar czvf %{SOURCE0} /usr/share/applications/vrdc
 tar xzvf %{SOURCE0}
+tar xzvf %{SOURCE1}
 
 %clean
 rm -rf %buildroot
