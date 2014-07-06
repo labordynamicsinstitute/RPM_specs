@@ -4,7 +4,7 @@ Group: Applications/Statistical
 Summary: Creates i(PROG) and q(PROG) convenience short cuts to interact with a PBS-like qsub system
 Packager: Lars Vilhuber <lars.vilhuber@cornell.edu>
 Version: 1
-Release: 0 
+Release: 3 
 Source0: vrdc-iutilities.tgz
 Source1: vrdc-qutilities.tgz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
@@ -16,13 +16,13 @@ Creates i(PROG) and q(PROG) convenience short cuts to interact with a PBS-like q
 %prep
 
 %build
+# create it - optionally comment out
+tar czvf %{SOURCE0} /usr/local/bin/i*
+tar czvf %{SOURCE1} /usr/local/bin/q*
 
 %install
 install -d -m 755 %buildroot/usr/local/bin
 cd %buildroot
-# create it - optionally comment out
-tar czvf %{SOURCE0} /usr/local/bin/i*
-tar czvf %{SOURCE1} /usr/local/bin/q*
 # untar it
 tar xzvf %{SOURCE0}
 tar xzvf %{SOURCE1}
@@ -34,6 +34,7 @@ rm -rf %buildroot
 %defattr(-,root,root)
    /usr/local/bin/iR
    /usr/local/bin/iRstudio
+   /usr/local/bin/iStata
    /usr/local/bin/iasreml
    /usr/local/bin/imatlab
    /usr/local/bin/imatlab-R2012b
@@ -45,7 +46,6 @@ rm -rf %buildroot
    /usr/local/bin/qmatlab
    /usr/local/bin/qoctave
    /usr/local/bin/qsas
-   /usr/local/bin/qsas_lgmem
    /usr/local/bin/qsas_wait
    /usr/local/bin/qstata
    /usr/local/bin/qstata-mp

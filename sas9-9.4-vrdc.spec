@@ -4,7 +4,7 @@ Group: Applications/Statistics
 Summary: SAS 9.4 
 Packager: Lars Vilhuber
 Version: 9.4
-Release: 1
+Release: 2
 Source0: sasv94_local.cfg
 Source1: SAS94-desktop.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-build 
