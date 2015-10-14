@@ -1,4 +1,4 @@
-%define updatever 20140211
+%define updatever 20150603
 # maintenance of stata:
 # on an installed system, run 'update all'
 # then tar czf /usr/src/redhat/SOURCES/stata13-linux-$updatevar.tgz /usr/local/stata13
@@ -8,7 +8,7 @@ License: Commercial
 Group: Application/Statistics
 Summary: Stata 13 (standard) from Stata.com 
 Packager: Lars Vilhuber <lars.vilhuber@cornell.edu>
-Version: 13.0 
+Version: 13.1 
 Release: %{updatever} 
 BuildRoot: %{_tmppath}/%{name}-%{version}-build 
 Source0: stata13-linux-%{updatever}.tgz 
