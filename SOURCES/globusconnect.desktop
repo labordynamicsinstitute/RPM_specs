@@ -1,0 +1,26 @@
+[Desktop Entry]
+Name=Globus Connect
+Name[ca]=Globus Connect
+Name[de]=Globus Connect
+Name[en_AU]=Globus Connect
+Name[en_CA]=Globus Connect
+Name[en_GB]=Globus Connect
+GenericName=Globusonline Transfer Client
+GenericName[ca]=Client de Globusonline Transfer
+GenericName[de]=Globusonline Transfer-Client
+GenericName[en_AU]=Globusonline Transfer Client
+GenericName[en_CA]=Globusonline Transfer Client
+GenericName[en_GB]=Globusonline Transfer Client
+X-GNOME-FullName=Globus Connect Globusonline Transfer Client
+X-GNOME-FullName[ca]=Client de Globusonline Transfer Globus Connect
+X-GNOME-FullName[de]=Globus Connect Globusonline Transfer-Client
+X-GNOME-FullName[en_AU]=Globus Connect Globusonline Transfer Client
+X-GNOME-FullName[en_CA]=Globus Connect Globusonline Transfer Client
+X-GNOME-FullName[en_GB]=Globus Connect Globusonline Transfer Client
+Comment=Download and share files using Globusonline
+Exec=globusconnect %F
+Icon=globusconnect
+Terminal=false
+TryExec=globusconnect
+Type=Application
+Categories=Network;FileTransfer;P2P;
