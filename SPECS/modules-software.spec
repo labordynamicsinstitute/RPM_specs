@@ -1,3 +1,7 @@
+%define defaultR 3.2.2
+%define defaultMatlab R2014b
+%define defaultStata 14
+
 Name: modules-software
 License: GPLv3
 Group: Application/Statistics
@@ -84,10 +88,10 @@ Summary: Module files for matlab-R2015b
 %description matlab-R2015b
 Module files for matlab-R2015b
 
-%package matlab-R2015b-default
+%package matlab-%defaultMatlab-default
 Group: Application/Statistics
 Summary: Set this to be the default version
-%description matlab-R2015b-default
+%description matlab-%defaultMatlab-default
 Set this to be the default version
 
 %package R-ACML
@@ -138,10 +142,10 @@ Summary: Module files for stata14
 %description stata14
 Module files for stata14
 
-%package stata14-default
+%package stata%defaultStata-default
 Group: Application/Statistics
 Summary: Set this version of stata to be the default version
-%description stata14-default
+%description stata%defaultStata-default
 Set this version of stata to be the default version
 
 %package ox-7
@@ -189,6 +193,33 @@ tar xzvf %{SOURCE11}
 tar xzvf %{SOURCE12}
 tar xzvf %{SOURCE13}
 tar xzvf %{SOURCE14}
+echo '#%Module1.0
+##
+##
+set ModulesVersion "%defaultMatlab"
+' > %buildroot/usr/share/Modules/modulefiles/matlab/.version
+
+echo '#%Module1.0
+##
+##
+set ModulesVersion "%defaultStata"
+' > %buildroot/usr/share/Modules/modulefiles/stata/.version
+
+for arg in mp se 
+do
+echo '#%Module1.0
+##
+##
+set ModulesVersion "%defaultStata"
+' > %buildroot/usr/share/Modules/modulefiles/stata/${arg}.version
+done
+
+echo '#%Module1.0
+##
+##
+set ModulesVersion "%defaultR"
+' > %buildroot/usr/share/Modules/modulefiles/R/.version
+
 
 %clean
 rm -rf %buildroot
@@ -208,35 +239,45 @@ rm -rf %buildroot
 
 
 %files ampl-20150516
+%defattr(0755,root,root,0755)
 %dir /usr/share/Modules/modulefiles/ampl/
 /usr/share/Modules/modulefiles/ampl/20150516
 
 %files ampl-20150516-default
+%defattr(0755,root,root,0755)
 /usr/share/Modules/modulefiles/ampl/.version
 
 %files knitro-9.1.0-z
+%defattr(0755,root,root,0755)
 %dir /usr/share/Modules/modulefiles/knitro/
 /usr/share/Modules/modulefiles/knitro/9.1.0-z
 
 %files knitro-9.1.0-z-default
+%defattr(0755,root,root,0755)
 /usr/share/Modules/modulefiles/knitro/.version
 
 %files matlab-R2012b
+%defattr(0755,root,root,0755)
 /usr/share/Modules/modulefiles/matlab/R2012b
 
 %files matlab-R2013b
+%defattr(0755,root,root,0755)
 /usr/share/Modules/modulefiles/matlab/R2013b
 
 %files matlab-R2014b
+%defattr(0755,root,root,0755)
 /usr/share/Modules/modulefiles/matlab/R2014b
 
 %files matlab-R2015b
+%defattr(0755,root,root,0755)
 /usr/share/Modules/modulefiles/matlab/R2015b
 
-%files matlab-R2015b-default
+%files matlab-%defaultMatlab-default
+%defattr(0755,root,root,0755)
 /usr/share/Modules/modulefiles/matlab/.version
 
 %files R-ACML
+%defattr(0755,root,root,0755)
 %dir /usr/share/Modules/modulefiles/R/ACML/
 %dir /usr/share/Modules/modulefiles/R/ACML/MP/
 /usr/share/Modules/modulefiles/R/ACML/3.2.0
@@ -246,6 +287,7 @@ rm -rf %buildroot
 /usr/share/Modules/modulefiles/R/ACML/.version
 
 %files R-MKL
+%defattr(0755,root,root,0755)
 %dir /usr/share/Modules/modulefiles/R/MKL/
 %dir /usr/share/Modules/modulefiles/R/MKL/MP/
 /usr/share/Modules/modulefiles/R/MKL/3.0.2
@@ -254,16 +296,21 @@ rm -rf %buildroot
 /usr/share/Modules/modulefiles/R/MKL/.version
 
 %files R-RPM
-/usr/share/Modules/modulefiles/R/3.2.2
+%defattr(0755,root,root,0755)
+/usr/share/Modules/modulefiles/R/%defaultR
+/usr/share/Modules/modulefiles/R/.version
 
 %files SAS-9
+%defattr(0755,root,root,0755)
 %dir /usr/share/Modules/modulefiles/sas/
 /usr/share/Modules/modulefiles/sas/9.4
 
 %files SAS-9-default
+%defattr(0755,root,root,0755)
 /usr/share/Modules/modulefiles/sas/.version
 
 %files stata12
+%defattr(0755,root,root,0755)
 /usr/share/Modules/modulefiles/stata/12
 /usr/share/Modules/modulefiles/stata/mp/12
 /usr/share/Modules/modulefiles/stata/se/12
@@ -271,6 +318,7 @@ rm -rf %buildroot
 #%files stata12-default
 
 %files stata13
+%defattr(0755,root,root,0755)
 /usr/share/Modules/modulefiles/stata/13
 /usr/share/Modules/modulefiles/stata/mp/13
 /usr/share/Modules/modulefiles/stata/se/13
@@ -278,20 +326,24 @@ rm -rf %buildroot
 #%files stata13-default
 
 %files stata14
+%defattr(0755,root,root,0755)
 /usr/share/Modules/modulefiles/stata/14
 /usr/share/Modules/modulefiles/stata/mp/14
 /usr/share/Modules/modulefiles/stata/se/14
 
-%files stata14-default
+%files stata%defaultStata-default
+%defattr(0755,root,root,0755)
 /usr/share/Modules/modulefiles/stata/.version
 /usr/share/Modules/modulefiles/stata/mp/.version
 /usr/share/Modules/modulefiles/stata/se/.version
 
 %files ox-7
+%defattr(0755,root,root,0755)
 /usr/share/Modules/modulefiles/ox/.version
 /usr/share/Modules/modulefiles/ox/7.0
 
 %files python-anaconda
+%defattr(0755,root,root,0755)
 %dir /usr/share/Modules/modulefiles/python/anaconda
 /usr/share/Modules/modulefiles/python/.version
 /usr/share/Modules/modulefiles/python/2.6
@@ -299,6 +351,7 @@ rm -rf %buildroot
 /usr/share/Modules/modulefiles/python/anaconda/.version
 
 %files python-anaconda-3.3
+%defattr(0755,root,root,0755)
 /usr/share/Modules/modulefiles/python/anaconda/3.3
 
 
