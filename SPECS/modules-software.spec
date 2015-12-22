@@ -205,13 +205,12 @@ echo '#%Module1.0
 set ModulesVersion "%defaultStata"
 ' > %buildroot/usr/share/Modules/modulefiles/stata/.version
 
-for arg in mp se 
-do
+for arg in "mp" "se"; do 
 echo '#%Module1.0
 ##
 ##
 set ModulesVersion "%defaultStata"
-' > %buildroot/usr/share/Modules/modulefiles/stata/${arg}.version
+' > %buildroot/usr/share/Modules/modulefiles/stata/${arg}/.version
 done
 
 echo '#%Module1.0
