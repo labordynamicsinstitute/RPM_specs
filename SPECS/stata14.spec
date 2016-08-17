@@ -1,4 +1,4 @@
-%define updatever 20150803
+%define updatever 20160720
 # maintenance of stata:
 # on an installed system, run 'update all'
 # then tar czf /usr/src/redhat/SOURCES/stata14-linux-$updatevar.tgz /usr/local/stata14
@@ -73,9 +73,16 @@ Creates links and desktop icons for Stata 14
 Group: Application/Statistics
 Summary: Make Stata 14 the default
 Requires: stata14 >= 14.0
-
 %description mkdefault
 Creates links for Stata 14
+
+%package vrdc-config
+Group: Application/Statistics
+Summary: VRDC configuration for Stata 
+Requires: stata14 >= 14.0
+%description vrdc-config
+Makes some VRDC-specific configuration.
+
 
 %prep
 
@@ -119,6 +126,7 @@ ln -sf xstata14-sm xstata-sm
 cd %buildroot/usr/local/stata14
 echo "Welcome to the ECCO!" > stata.msg
 echo "set processors 1" > profile.do
+echo "sysdir set SITE /cac/contrib/ado" >> profile.do
 
 
 #------------------------------------------------
@@ -151,11 +159,14 @@ fi
 /usr/local/stata14/utilities/update
 /usr/local/stata14/utilities/icudt54l.dat
 
+%files vrdc-config
+%defattr(0755,root,root,0755)
 %config
 /usr/local/stata14/stata.msg
 /usr/local/stata14/profile.do
 
 %files java
+%defattr(0755,root,root,0755)
 /usr/local/stata14/utilities/java
 
 %files std
