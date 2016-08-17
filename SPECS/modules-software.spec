@@ -1,13 +1,15 @@
 %define defaultR 3.2.2
 %define defaultMatlab R2014b
 %define defaultStata 14
+# Sample code to capture modules:
+# CWD=$(pwd);(cd /usr/share/Modules/modulefiles/; tar czvf $CWD/Modules.intel.tgz intel)
 
 Name: modules-software
 License: GPLv3
 Group: Application/Statistics
 Summary: Module packages for specific software installations. May not be generalizable
 Packager: Lars Vilhuber <lars.vilhuber@cornell.edu>
-Version: 1.0
+Version: 1.1
 Release: 0
 Source0: Modules.ampl.tgz
 Source1: Modules.knitro.tgz
@@ -24,6 +26,7 @@ Source11: Modules.stata13.tgz
 Source12: Modules.stata14.tgz
 Source13: Modules.ox-7.tgz
 Source14: Modules.python-anaconda.tgz
+Source15: Modules.intel.tgz
 
 BuildArch: noarch
 %if %{_vendor} == "suse"
@@ -166,6 +169,18 @@ Summary: Module files for Python by Anaconda
 %description python-anaconda-3.3
 Module files for Python by Anaconda. Requires at least some configuration.
 
+%package intel-compiler
+Group: Application/Statistics
+Summary: Module files for Intel compilers
+%description intel-compiler
+Module files for Intel compilers. License may be required to actually run software
+
+%package intel-mpi
+Group: Application/Statistics
+Summary: Module files for Intel MPI libraries
+%description intel-mpi
+Module files for Intel MPI libraries
+
 
 
 
@@ -193,6 +208,7 @@ tar xzvf %{SOURCE11}
 tar xzvf %{SOURCE12}
 tar xzvf %{SOURCE13}
 tar xzvf %{SOURCE14}
+tar xzvf %{SOURCE15}
 echo '#%Module1.0
 ##
 ##
@@ -352,6 +368,16 @@ rm -rf %buildroot
 %files python-anaconda-3.3
 %defattr(0755,root,root,0755)
 /usr/share/Modules/modulefiles/python/anaconda/3.3
+
+%files intel-compiler
+%defattr(0755,root,root,0755)
+%dir /usr/share/Modules/modulefiles/intel
+/usr/share/Modules/modulefiles/intel/intel-mpi-5.0.3
+
+%files intel-mpi
+%defattr(0755,root,root,0755)
+/usr/share/Modules/modulefiles/intel/intel-compilers-15.0.3
+
 
 
 %changelog
