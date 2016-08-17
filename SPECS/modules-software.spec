@@ -26,7 +26,11 @@ Source11: Modules.stata13.tgz
 Source12: Modules.stata14.tgz
 Source13: Modules.ox-7.tgz
 Source14: Modules.python-anaconda.tgz
-Source15: Modules.intel.tgz
+Source15: Modules.texlive-2007.tgz
+Source16: Modules.texlive-2014.tgz
+Source17: Modules.texlive-2015.tgz
+Source18: Modules.intel.tgz
+
 
 BuildArch: noarch
 %if %{_vendor} == "suse"
@@ -181,8 +185,23 @@ Summary: Module files for Intel MPI libraries
 %description intel-mpi
 Module files for Intel MPI libraries
 
+%package texlive-2007
+Group: Productivity/Publishing/TeX/Base
+Summary: System version of texlive, for compatibility with modules
+%description texlive-2007
+System version of texlive, for compatibility with modules
 
+%package texlive-2014
+Group: Productivity/Publishing/TeX/Base
+Summary: Texlive version installed using the custom installer
+%description texlive-2014
+Full install of Texlive 2014
 
+%package texlive-2015
+Group: Productivity/Publishing/TeX/Base
+Summary: Texlive version installed using the custom installer
+%description texlive-2015
+Full install of Texlive 2015
 
 %build
 #cd %buildroot
@@ -209,6 +228,9 @@ tar xzvf %{SOURCE12}
 tar xzvf %{SOURCE13}
 tar xzvf %{SOURCE14}
 tar xzvf %{SOURCE15}
+tar xzvf %{SOURCE16}
+tar xzvf %{SOURCE17}
+tar xzvf %{SOURCE18}
 echo '#%Module1.0
 ##
 ##
@@ -369,6 +391,20 @@ rm -rf %buildroot
 %defattr(0755,root,root,0755)
 /usr/share/Modules/modulefiles/python/anaconda/3.3
 
+%files texlive-2007
+%defattr(0755,root,root,0755)
+%dir /usr/share/Modules/modulefiles/texlive/
+/usr/share/Modules/modulefiles/texlive/2007
+/usr/share/Modules/modulefiles/texlive/.version
+
+%files texlive-2014
+%defattr(0755,root,root,0755)
+/usr/share/Modules/modulefiles/texlive/2014
+
+%files texlive-2015
+%defattr(0755,root,root,0755)
+/usr/share/Modules/modulefiles/texlive/2015
+
 %files intel-compiler
 %defattr(0755,root,root,0755)
 %dir /usr/share/Modules/modulefiles/intel
@@ -377,7 +413,6 @@ rm -rf %buildroot
 %files intel-mpi
 %defattr(0755,root,root,0755)
 /usr/share/Modules/modulefiles/intel/intel-compilers-15.0.3
-
 
 
 %changelog
