@@ -1,4 +1,4 @@
-%define defaultR 3.2.2
+%define defaultR system
 %define defaultMatlab R2014b
 %define defaultStata 14
 # Sample code to capture modules:
