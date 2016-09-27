@@ -10,26 +10,27 @@ Group: Application/Statistics
 Summary: Module packages for specific software installations. May not be generalizable
 Packager: Lars Vilhuber <lars.vilhuber@cornell.edu>
 Version: 1.1
-Release: 0
+Release: 1
 Source0: Modules.ampl.tgz
 Source1: Modules.knitro.tgz
 Source2: Modules.matlab-R2012b.tgz
 Source3: Modules.matlab-R2013b.tgz
 Source4: Modules.matlab-R2014b.tgz
 Source5: Modules.matlab-R2015b.tgz
-Source6: Modules.R-ACML.tgz
-Source7: Modules.R-MKL.tgz
-Source8: Modules.R-RPM.tgz
-Source9: Modules.SAS-9.4.tgz
-Source10: Modules.stata12.tgz
-Source11: Modules.stata13.tgz
-Source12: Modules.stata14.tgz
-Source13: Modules.ox-7.tgz
-Source14: Modules.python-anaconda.tgz
-Source15: Modules.texlive-2007.tgz
-Source16: Modules.texlive-2014.tgz
-Source17: Modules.texlive-2015.tgz
-Source18: Modules.intel.tgz
+Source6: Modules.matlab-R2016a.tgz
+Source7: Modules.R-ACML.tgz
+Source8: Modules.R-MKL.tgz
+Source9: Modules.R-RPM.tgz
+Source10: Modules.SAS-9.4.tgz
+Source11: Modules.stata12.tgz
+Source12: Modules.stata13.tgz
+Source13: Modules.stata14.tgz
+Source14: Modules.ox-7.tgz
+Source15: Modules.python-anaconda.tgz
+Source16: Modules.texlive-2007.tgz
+Source17: Modules.texlive-2014.tgz
+Source18: Modules.texlive-2015.tgz
+Source19: Modules.intel.tgz
 
 
 BuildArch: noarch
@@ -94,6 +95,12 @@ Group: Application/Statistics
 Summary: Module files for matlab-R2015b
 %description matlab-R2015b
 Module files for matlab-R2015b
+
+%package matlab-R2016a
+Group: Application/Statistics
+Summary: Module files for matlab-R2016a
+%description matlab-R2016a
+Module files for matlab-R2016a
 
 %package matlab-%defaultMatlab-default
 Group: Application/Statistics
@@ -231,6 +238,7 @@ tar xzvf %{SOURCE15}
 tar xzvf %{SOURCE16}
 tar xzvf %{SOURCE17}
 tar xzvf %{SOURCE18}
+tar xzvf %{SOURCE19}
 echo '#%Module1.0
 ##
 ##
@@ -308,6 +316,10 @@ rm -rf %buildroot
 %files matlab-R2015b
 %defattr(0755,root,root,0755)
 /usr/share/Modules/modulefiles/matlab/R2015b
+
+%files matlab-R2016a
+%defattr(0755,root,root,0755)
+/usr/share/Modules/modulefiles/matlab/R2016a
 
 %files matlab-%defaultMatlab-default
 %defattr(0755,root,root,0755)
