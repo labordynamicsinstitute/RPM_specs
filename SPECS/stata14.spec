@@ -1,7 +1,7 @@
-%define updatever 20160720
+%define updatever 20160929
 # maintenance of stata:
 # on an installed system, run 'update all'
-# then tar czf /usr/src/redhat/SOURCES/stata14-linux-$updatevar.tgz /usr/local/stata14
+# then tar czf /usr/src/redhat/SOURCES/stata14-linux-$updatever.tgz /usr/local/stata14
 
 Name: stata14
 License: Commercial
